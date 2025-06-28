@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   stampsByYear: { [year: number]: number } = {};
   stampsByCategoryType1: { [category: string]: number } = {};
   categorySummary: { category: string, count: number, totalValue: number }[] = [];
+  stampTypeSummary: { type: string, count: number, totalValue: number }[] = [];
 
   constructor(private stampService: StampService) { }
 
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     this.calculateStampsByYear();
     this.calculateStampsByCategoryType1();
     this.calculateCategorySummary();
+    this.calculateStampTypeSummary();
   }
 
   private calculateSummary(): void {
@@ -71,6 +73,26 @@ export class DashboardComponent implements OnInit {
       count: summaryMap[category].count,
       totalValue: summaryMap[category].totalValue
     })).sort((a, b) => a.category.localeCompare(b.category));
+  }
+
+  private calculateStampTypeSummary(): void {
+    const stamps = this.stampService.getStamps();
+    const summaryMap: { [type: string]: { count: number, totalValue: number } } = {};
+
+    stamps.forEach(stamp => {
+      const type = stamp.stampType || 'Unspecified';
+      if (!summaryMap[type]) {
+        summaryMap[type] = { count: 0, totalValue: 0 };
+      }
+      summaryMap[type].count++;
+      summaryMap[type].totalValue += stamp.value;
+    });
+
+    this.stampTypeSummary = Object.keys(summaryMap).map(type => ({
+      type,
+      count: summaryMap[type].count,
+      totalValue: summaryMap[type].totalValue
+    })).sort((a, b) => a.type.localeCompare(b.type));
   }
 
   get formattedStampsByYear(): string {

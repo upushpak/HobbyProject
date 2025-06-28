@@ -16,6 +16,28 @@
         </div>
       </div>
 
+      <hr>
+
+      <h3 class="mt-4">Stamps by Stamp Type</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Stamp Type</th>
+            <th>Number of Stamps</th>
+            <th>Total Value (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stampType of stampTypeSummary">
+            <td>{{ stampType.type }}</td>
+            <td>{{ stampType.count }}</td>
+            <td>{{ stampType.totalValue | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
       <h3 class="mt-4">Stamps by Category Type 1</h3>
       <table class="table table-striped">
         <thead>

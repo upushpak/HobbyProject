@@ -16,6 +16,17 @@
     </thead>
     <tbody>
       <tr>
+        <td><strong>Stamp Type</strong></td>
+        <td>
+          <span *ngIf="!editMode['stampType']">{{ stamp.stampType ?? 'NA' }}</span>
+          <select *ngIf="editMode['stampType']" [(ngModel)]="editedStamp.stampType" (blur)="updateField('stampType')">
+            <option *ngFor="let option of stampTypeOptions" [value]="option">{{ option }}</option>
+          </select>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('stampType')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['stampType'] | date:'medium' }}</td>
+      </tr>
+      <tr>
         <td><strong>Released Year</strong></td>
         <td>
           <span *ngIf="!editMode['releaseYear']">{{ stamp.releaseYear ?? 'NA' }}</span>
@@ -70,7 +81,7 @@
         <td>{{ stamp.fieldTimestamps?.['value'] | date:'medium' }}</td>
       </tr>
       <tr>
-        <td><strong>Extra Details</strong></td>
+        <td><strong>About Stamp</strong></td>
         <td>
           <span *ngIf="!editMode['extraDetails']">{{ stamp.extraDetails ?? 'NA' }}</span>
           <textarea *ngIf="editMode['extraDetails']" [(ngModel)]="editedStamp.extraDetails" (blur)="updateField('extraDetails')"></textarea>

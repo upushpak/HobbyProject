@@ -42,6 +42,13 @@ export class StampDetailsComponent implements OnInit {
     'War',
     'World Day'
   ];
+  stampTypeOptions: string[] = [
+    '', // Empty option for default
+    'Stamp',
+    'Miniature Sheet',
+    'First Day Cover',
+    'Special Cover'
+  ];
   allowedFileTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/svg+xml', 'text/html'];
   maxFileSize = 5 * 1024 * 1024; // 5 MB
 
@@ -78,7 +85,7 @@ export class StampDetailsComponent implements OnInit {
     } else {
       // Handle case where stamp is not found, e.g., navigate away or show error
       // For now, we'll initialize with default values to prevent errors
-      this.stamp = { id: 0, name: '', dateOfIssue: '', value: 0, referenceLinks: [], files: [] };
+      this.stamp = { id: 0, name: '', dateOfIssue: '', value: 0, referenceLinks: [], files: [], stampType: '' };
       this.editedStamp = { ...this.stamp };
     }
   }

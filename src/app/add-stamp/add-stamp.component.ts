@@ -43,12 +43,21 @@ export class AddStampComponent {
     'World Day'
   ];
 
+  stampTypeOptions: string[] = [
+    '', // Empty option for default
+    'Stamp',
+    'Miniature Sheet',
+    'First Day Cover',
+    'Special Cover'
+  ];
+
   constructor(
     private fb: FormBuilder,
     private stampService: StampService,
     private router: Router
   ) {
     this.stampForm = this.fb.group({
+      stampType: ['', Validators.required],
       releaseYear: [null, Validators.required],
       dateOfIssue: ['', Validators.required],
       name: ['', Validators.required],

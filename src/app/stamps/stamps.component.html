@@ -5,6 +5,9 @@
   <thead>
     <tr>
       <th>Actions</th>
+      <th (click)="sortData('stampType')">Stamp Type
+        <i *ngIf="sortColumn === 'stampType'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
+      </th>
       <th (click)="sortData('releaseYear')">Released Year
         <i *ngIf="sortColumn === 'releaseYear'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
@@ -26,9 +29,7 @@
       <th (click)="sortData('value')">Value (₹)
         <i *ngIf="sortColumn === 'value'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
-      <th (click)="sortData('extraDetails')">Extra Details
-        <i *ngIf="sortColumn === 'extraDetails'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
-      </th>
+      
       <th (click)="sortData('location')">Location
         <i *ngIf="sortColumn === 'location'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
@@ -38,16 +39,40 @@
       <th (click)="sortData('categoryType2')">Category Type 2
         <i *ngIf="sortColumn === 'categoryType2'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
-      <th (click)="sortData('categoryType3')">Category Type 3
-        <i *ngIf="sortColumn === 'categoryType3'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
-      </th>
-      <th (click)="sortData('comments')">Comments
-        <i *ngIf="sortColumn === 'comments'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
-      </th>
+      
+      
       <th (click)="sortData('createdAt')">Created At
         <i *ngIf="sortColumn === 'createdAt'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
       <th>Reference</th>
+    </tr>
+    <tr>
+      <td></td> <!-- Actions column - no filter -->
+      <td>
+        <select class="form-control" [(ngModel)]="filters.stampType" (change)="applyFilters()">
+          <option *ngFor="let option of stampTypeOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td><input type="number" class="form-control" [(ngModel)]="filters.releaseYear" (input)="applyFilters()" placeholder="Year"></td>
+      <td><input type="date" class="form-control" [(ngModel)]="filters.dateOfIssue" (input)="applyFilters()"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="filters.name" (input)="applyFilters()" placeholder="Name"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="filters.stampSubHeader" (input)="applyFilters()" placeholder="Sub Header"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="filters.specificStampDetails" (input)="applyFilters()" placeholder="Specific Details"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="filters.celebratingYear" (input)="applyFilters()" placeholder="Celebrating Year"></td>
+      <td><input type="number" class="form-control" [(ngModel)]="filters.value" (input)="applyFilters()" placeholder="Value"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="filters.location" (input)="applyFilters()" placeholder="Location"></td>
+      <td>
+        <select class="form-control" [(ngModel)]="filters.categoryType1" (change)="applyFilters()">
+          <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td>
+        <select class="form-control" [(ngModel)]="filters.categoryType2" (change)="applyFilters()">
+          <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td><input type="date" class="form-control" [(ngModel)]="filters.createdAt" (input)="applyFilters()"></td>
+      <td></td> <!-- Reference column - no filter -->
     </tr>
   </thead>
   <tbody>
@@ -56,6 +81,7 @@
         <a [routerLink]="['/stamps', stamp.id]"><i class="bi bi-eye-fill" style="color: #17a2b8;"></i></a><br>
         <button (click)="confirmDelete(stamp)" style="background: none; border: none; padding: 0; cursor: pointer;"><i class="bi bi-trash-fill" style="color: #dc3545;"></i></button>
       </td>
+      <td>{{ stamp.stampType }}</td>
       <td>{{ stamp.releaseYear }}</td>
       <td>{{ stamp.dateOfIssue | date: 'dd MMM yyyy' }}</td>
       <td>{{ stamp.name }}</td>
@@ -63,12 +89,12 @@
       <td>{{ stamp.specificStampDetails }}</td>
       <td>{{ stamp.celebratingYear }}</td>
       <td>{{ stamp.value }}</td>
-      <td>{{ stamp.extraDetails }}</td>
+      
       <td>{{ stamp.location }}</td>
       <td>{{ stamp.categoryType1 }}</td>
       <td>{{ stamp.categoryType2 }}</td>
-      <td>{{ stamp.categoryType3 }}</td>
-      <td>{{ stamp.comments }}</td>
+      
+      
       <td>{{ stamp.createdAt | date:'medium' }}</td>
       <td>
         <a *ngIf="stamp.referenceLinks && stamp.referenceLinks.length > 0" [href]="stamp.referenceLinks[0]" target="_blank" class="btn btn-secondary btn-sm">

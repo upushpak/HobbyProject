@@ -45,6 +45,14 @@ export class StampsComponent implements OnInit {
     'World Day'
   ];
 
+  stampTypeOptions: string[] = [
+    '', // Empty option for default
+    'Stamp',
+    'Miniature Sheet',
+    'First Day Cover',
+    'Special Cover'
+  ];
+
   sortColumn: string = 'dateOfIssue';
   sortDirection: string = 'desc'; // Default to newest on top
 
@@ -75,12 +83,18 @@ export class StampsComponent implements OnInit {
             return false;
           }
         } else if (key === 'dateOfIssue' && typeof filterValue === 'string') {
-          // For date filtering, assuming filterValue is in 'YYYY-MM-DD' format from input type='date'
-          // And stampValue is also in 'YYYY-MM-DD' or compatible format
-          if (stampValue.substring(0, 10) !== filterValue) {
+          if (stampValue && stampValue.substring(0, 10) !== filterValue) {
+            return false;
+          }
+        } else if (key === 'createdAt' && typeof filterValue === 'string') {
+          if (stampValue && new Date(stampValue).toISOString().substring(0, 10) !== filterValue) {
             return false;
           }
         } else if (key.startsWith('categoryType') && typeof filterValue === 'string') {
+          if (stampValue !== filterValue) {
+            return false;
+          }
+        } else if (key === 'stampType' && typeof filterValue === 'string') {
           if (stampValue !== filterValue) {
             return false;
           }
@@ -127,6 +141,7 @@ export class StampsComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialog, {
       data: {
         name: stamp.name,
+        stampType: stamp.stampType,
         dateOfIssue: stamp.dateOfIssue,
         value: stamp.value,
         categoryType1: stamp.categoryType1
