@@ -1,0 +1,44 @@
+.card-header {
+  background-color: #B0C4DE !important; /* LightSteelBlue - a pastel blue */
+  color: #2F4F4F !important; /* DarkSlateGray - a dark grey for text */
+}
+
+.btn-primary {
+  background-color: #8A2BE2 !important; /* BlueViolet - a vibrant purple */
+  border-color: #8A2BE2 !important;
+}
+
+.btn-primary:hover {
+  background-color: #6A5ACD !important; /* SlateBlue - a darker purple */
+  border-color: #6A5ACD !important;
+}
+
+.btn-success {
+  background-color: #66CDAA !important; /* MediumAquaMarine - a pastel green for success */
+  border-color: #66CDAA !important;
+}
+
+.btn-success:hover {
+  background-color: #48D1CC !important; /* MediumTurquoise - a darker pastel green */
+  border-color: #48D1CC !important;
+}
+
+.btn-secondary {
+  background-color: #A9A9A9 !important; /* DarkGray - a mild grey */
+  border-color: #A9A9A9 !important;
+}
+
+.btn-secondary:hover {
+  background-color: #808080 !important; /* Gray - a darker grey */
+  border-color: #808080 !important;
+}
+
+.btn-danger {
+  background-color: #FF6347 !important; /* Tomato - a soft red for danger */
+  border-color: #FF6347 !important;
+}
+
+.btn-danger:hover {
+  background-color: #FF4500 !important; /* OrangeRed - a darker soft red */
+  border-color: #FF4500 !important;
+}

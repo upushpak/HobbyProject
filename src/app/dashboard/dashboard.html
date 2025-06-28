@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Dashboard</h2>
+    </div>
+    <div class="card-body">
+      <p>Welcome to my world of Stamp Collection. Since 2002.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Total Stamps:</strong> {{ totalStampCount }}</p>
+          <p><strong>Total Value:</strong> ₹{{ totalStampValue | number:'1.2-2' }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Stamps by Year:</strong> {{ formattedStampsByYear }}</p>
+          <p><strong>Stamps by Category Type 1:</strong> {{ formattedStampsByCategoryType1 }}</p>
+        </div>
+      </div>
+
+      <h3 class="mt-4">Stamps by Category Type 1</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Number of Stamps</th>
+            <th>Total Value (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categorySummary">
+            <td>{{ category.category }}</td>
+            <td>{{ category.count }}</td>
+            <td>{{ category.totalValue | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

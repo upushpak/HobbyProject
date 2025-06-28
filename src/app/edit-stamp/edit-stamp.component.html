@@ -1,0 +1,19 @@
+<div *ngIf="stamp">
+  <h2>Edit Stamp</h2>
+  <form (ngSubmit)="updateStamp()" #stampForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="stamp.name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="dateOfIssue">Date of Issue</label>
+      <input type="text" class="form-control" id="dateOfIssue" required [(ngModel)]="stamp.dateOfIssue" name="dateOfIssue">
+    </div>
+    <div class="form-group">
+      <label for="value">Value</label>
+      <input type="number" class="form-control" id="value" required [(ngModel)]="stamp.value" name="value">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>
+

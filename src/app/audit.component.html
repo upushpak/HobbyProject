@@ -1,0 +1,21 @@
+<h2>Audit Log</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Stamp ID</th>
+      <th>Stamp Name</th>
+      <th>Timestamp</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of auditLog">
+      <td>{{ entry.action }}</td>
+      <td>{{ entry.stampId }}</td>
+      <td>{{ entry.stampName }}</td>
+      <td>{{ entry.timestamp | date:'medium' }}</td>
+      <td><pre>{{ entry.details | json }}</pre></td>
+    </tr>
+  </tbody>
+</table>

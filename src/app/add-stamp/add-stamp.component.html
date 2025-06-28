@@ -1,0 +1,129 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Stamp Entry</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="stampForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="releaseYear">Released Year <span class="text-danger">*</span></label>
+              <input type="number" id="releaseYear" class="form-control" formControlName="releaseYear" placeholder="e.g., 2023"
+                     [class.is-invalid]="stampForm.get('releaseYear')?.invalid && stampForm.get('releaseYear')?.touched">
+              <div *ngIf="stampForm.get('releaseYear')?.invalid && stampForm.get('releaseYear')?.touched" class="invalid-feedback">
+                Released Year is required.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="dateOfIssue">Released Date <span class="text-danger">*</span></label>
+              <input type="date" id="dateOfIssue" class="form-control" formControlName="dateOfIssue"
+                     [class.is-invalid]="stampForm.get('dateOfIssue')?.invalid && stampForm.get('dateOfIssue')?.touched">
+              <div *ngIf="stampForm.get('dateOfIssue')?.invalid && stampForm.get('dateOfIssue')?.touched" class="invalid-feedback">
+                Released Date is required.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="name">Stamp Name <span class="text-danger">*</span></label>
+              <input type="text" id="name" class="form-control" formControlName="name"
+                     [class.is-invalid]="stampForm.get('name')?.invalid && stampForm.get('name')?.touched">
+              <div *ngIf="stampForm.get('name')?.invalid && stampForm.get('name')?.touched" class="invalid-feedback">
+                Stamp Name is required.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="stampSubHeader">Stamp Sub Header</label>
+              <textarea id="stampSubHeader" class="form-control" formControlName="stampSubHeader" rows="2"></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="specificStampDetails">Specific Stamp Details</label>
+              <textarea id="specificStampDetails" class="form-control" formControlName="specificStampDetails" rows="3"></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="celebratingYear">Celebrating Year</label>
+              <input type="text" id="celebratingYear" class="form-control" formControlName="celebratingYear" placeholder="e.g., 50th Anniversary">
+            </div>
+            <div class="form-group mb-3">
+              <label for="value">Value (₹) <span class="text-danger">*</span></label>
+              <input type="number" id="value" class="form-control" formControlName="value"
+                     [class.is-invalid]="stampForm.get('value')?.invalid && stampForm.get('value')?.touched">
+              <div *ngIf="stampForm.get('value')?.invalid && stampForm.get('value')?.touched" class="invalid-feedback">
+                Value is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3">
+              <label for="extraDetails">Extra Details</label>
+              <textarea id="extraDetails" class="form-control" formControlName="extraDetails" rows="3"></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="categoryType1">Category Type 1 <span class="text-danger">*</span></label>
+              <select id="categoryType1" class="form-control" formControlName="categoryType1"
+                      [class.is-invalid]="stampForm.get('categoryType1')?.invalid && stampForm.get('categoryType1')?.touched">
+                <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+              </select>
+              <div *ngIf="stampForm.get('categoryType1')?.invalid && stampForm.get('categoryType1')?.touched" class="invalid-feedback">
+                Category Type 1 is required.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="categoryType2">Category Type 2</label>
+              <select id="categoryType2" class="form-control" formControlName="categoryType2">
+                <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="categoryType3">Category Type 3</label>
+              <select id="categoryType3" class="form-control" formControlName="categoryType3">
+                <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="location">Location</label>
+              <input type="text" id="location" class="form-control" formControlName="location" placeholder="e.g., New Delhi, India">
+            </div>
+            <div class="form-group mb-3">
+              <label>Reference Links</label>
+              <div formArrayName="referenceLinks">
+                <div *ngFor="let linkControl of referenceLinks.controls; let i = index" class="input-group mb-2">
+                  <input type="url" class="form-control" [formControlName]="i" placeholder="Enter URL">
+                  <button type="button" class="btn btn-outline-danger" (click)="removeReferenceLink(i)">Remove</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm" (click)="addReferenceLink()">Add Link</button>
+            </div>
+            <div class="form-group mb-3">
+              <label for="comments">Comments</label>
+              <textarea id="comments" class="form-control" formControlName="comments" rows="2"></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="files">Upload Files</label>
+              <input type="file" id="files" class="form-control" multiple (change)="onFileSelected($event)" accept=".pdf,.jpg,.png,.jpeg,.svg,.html">
+              <small class="form-text text-muted">Allowed formats: .pdf, .jpg, .png, .jpeg, .svg, .html</small>
+              <div *ngIf="stampForm.get('files')?.invalid && stampForm.get('files')?.touched" class="invalid-feedback">
+                Invalid file type or size.
+              </div>
+              <div *ngIf="files.length > 0" class="mt-2">
+                <h6>Selected Files:</h6>
+                <ul class="list-group">
+                  <li *ngFor="let file of files; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ file.name }}
+                    <button type="button" class="btn btn-danger btn-sm" (click)="removeFile(i)">Delete</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-success">Add Stamp</button>
+          <div>
+            <button type="button" class="btn btn-secondary me-2" (click)="onReset()">Reset</button>
+            <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

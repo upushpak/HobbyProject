@@ -1,0 +1,22 @@
+.confirm-dialog {
+  font-family: sans-serif;
+}
+
+.stamp-details {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.stamp-details p {
+  margin: 0 0 8px 0;
+}
+
+.mat-dialog-actions {
+  margin-top: 24px;
+}
+
+.cancel-button {
+  margin-right: 8px;
+}

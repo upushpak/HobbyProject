@@ -1,0 +1,176 @@
+<div *ngIf="stamp">
+  <h2>
+    <span *ngIf="!editMode['name']">{{ stamp.name }}</span>
+    <input *ngIf="editMode['name']" type="text" [(ngModel)]="editedStamp.name" (blur)="updateField('name')">
+    <i class="bi bi-pencil-fill" (click)="toggleEdit('name')" style="cursor: pointer; margin-left: 5px;"></i>
+  </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+        <th>Edit</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Released Year</strong></td>
+        <td>
+          <span *ngIf="!editMode['releaseYear']">{{ stamp.releaseYear ?? 'NA' }}</span>
+          <input *ngIf="editMode['releaseYear']" type="number" [(ngModel)]="editedStamp.releaseYear" (blur)="updateField('releaseYear')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('releaseYear')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['releaseYear'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Released Date</strong></td>
+        <td>
+          <span *ngIf="!editMode['dateOfIssue']">{{ stamp.dateOfIssue | date: 'dd MMM yyyy' }}</span>
+          <input *ngIf="editMode['dateOfIssue'] && editedStamp" type="date" [(ngModel)]="editedStamp.dateOfIssue" (blur)="updateField('dateOfIssue')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('dateOfIssue')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['dateOfIssue'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Sub Header</strong></td>
+        <td>
+          <span *ngIf="!editMode['stampSubHeader']">{{ stamp.stampSubHeader ?? 'NA' }}</span>
+          <textarea *ngIf="editMode['stampSubHeader']" [(ngModel)]="editedStamp.stampSubHeader" (blur)="updateField('stampSubHeader')"></textarea>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('stampSubHeader')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['stampSubHeader'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Specific Details</strong></td>
+        <td>
+          <span *ngIf="!editMode['specificStampDetails']">{{ stamp.specificStampDetails ?? 'NA' }}</span>
+          <textarea *ngIf="editMode['specificStampDetails']" [(ngModel)]="editedStamp.specificStampDetails" (blur)="updateField('specificStampDetails')"></textarea>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('specificStampDetails')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['specificStampDetails'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Celebrating Year</strong></td>
+        <td>
+          <span *ngIf="!editMode['celebratingYear']">{{ stamp.celebratingYear ?? 'NA' }}</span>
+          <input *ngIf="editMode['celebratingYear']" type="text" [(ngModel)]="editedStamp.celebratingYear" (blur)="updateField('celebratingYear')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('celebratingYear')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['celebratingYear'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Value</strong></td>
+        <td>
+          <span *ngIf="!editMode['value']">₹ {{ stamp.value }}</span>
+          <input *ngIf="editMode['value']" type="number" [(ngModel)]="editedStamp.value" (blur)="updateField('value')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('value')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['value'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Extra Details</strong></td>
+        <td>
+          <span *ngIf="!editMode['extraDetails']">{{ stamp.extraDetails ?? 'NA' }}</span>
+          <textarea *ngIf="editMode['extraDetails']" [(ngModel)]="editedStamp.extraDetails" (blur)="updateField('extraDetails')"></textarea>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('extraDetails')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['extraDetails'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Category Type 1</strong></td>
+        <td>
+          <span *ngIf="!editMode['categoryType1']">{{ stamp.categoryType1 ?? 'NA' }}</span>
+          <select *ngIf="editMode['categoryType1']" [(ngModel)]="editedStamp.categoryType1" (blur)="updateField('categoryType1')">
+            <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+          </select>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('categoryType1')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['categoryType1'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Category Type 2</strong></td>
+        <td>
+          <span *ngIf="!editMode['categoryType2']">{{ stamp.categoryType2 ?? 'NA' }}</span>
+          <select *ngIf="editMode['categoryType2']" [(ngModel)]="editedStamp.categoryType2" (blur)="updateField('categoryType2')">
+            <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+          </select>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('categoryType2')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['categoryType2'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Category Type 3</strong></td>
+        <td>
+          <span *ngIf="!editMode['categoryType3']">{{ stamp.categoryType3 ?? 'NA' }}</span>
+          <select *ngIf="editMode['categoryType3']" [(ngModel)]="editedStamp.categoryType3" (blur)="updateField('categoryType3')">
+            <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
+          </select>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('categoryType3')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['categoryType3'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Location</strong></td>
+        <td>
+          <span *ngIf="!editMode['location']">{{ stamp.location ?? 'NA' }}</span>
+          <input *ngIf="editMode['location']" type="text" [(ngModel)]="editedStamp.location" (blur)="updateField('location')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('location')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['location'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Reference Links</strong></td>
+        <td>
+          <ul *ngIf="editedStamp.referenceLinks && editedStamp.referenceLinks.length > 0; else noReferenceLinks">
+            <li *ngFor="let link of editedStamp.referenceLinks; let i = index">
+              <span *ngIf="!editMode['referenceLinks']">{{ link }}</span>
+              <input *ngIf="editMode['referenceLinks']" type="url" [(ngModel)]="editedStamp.referenceLinks[i]" (blur)="updateField('referenceLinks')">
+              <button *ngIf="editMode['referenceLinks']" (click)="removeReferenceLink(i)">Remove</button>
+            </li>
+          </ul>
+          <ng-template #noReferenceLinks>NA</ng-template>
+          <button *ngIf="editMode['referenceLinks']" (click)="addReferenceLink()">Add Link</button>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('referenceLinks')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['referenceLinks'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Uploaded Files</strong></td>
+        <td>
+          <ul *ngIf="editedStamp.files && editedStamp.files.length > 0; else noUploadedFiles">
+            <li *ngFor="let file of editedStamp.files; let i = index; trackBy: trackByIndex">
+              <span *ngIf="!editMode['files']">{{ editedStamp.files[i] }}</span>
+              <input #fileInput *ngIf="editMode['files']" type="text" [(ngModel)]="editedStamp.files[i]" (blur)="updateField('files', i, fileInput.value)">
+              <button *ngIf="editMode['files']" (click)="removeFile(i)">Remove</button>
+            </li>
+          </ul>
+          <ng-template #noUploadedFiles>NA</ng-template>
+          <input *ngIf="editMode['files']" type="file" multiple (change)="onFileSelected($event)">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('files')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['files'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Comments</strong></td>
+        <td>
+          <span *ngIf="!editMode['comments']">{{ stamp.comments ?? 'NA' }}</span>
+          <textarea *ngIf="editMode['comments']" [(ngModel)]="editedStamp.comments" (blur)="updateField('comments')"></textarea>
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('comments')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['comments'] | date:'medium' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Created At</strong></td>
+        <td>{{ stamp.createdAt | date:'medium' }}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!stamp">
+  <p>Stamp not found!</p>
+</div>

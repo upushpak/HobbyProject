@@ -1,0 +1,16 @@
+<div class="confirm-dialog">
+  <h2 mat-dialog-title>Confirm Deletion</h2>
+  <div mat-dialog-content>
+    <p>Are you sure you want to delete the following stamp?</p>
+    <div class="stamp-details">
+      <p><strong>Name:</strong> {{ data.name }}</p>
+      <p><strong>Released Date:</strong> {{ data.dateOfIssue | date: 'dd MMM yyyy' }}</p>
+      <p><strong>Value:</strong> {{ data.value }}</p>
+      <p><strong>Category:</strong> {{ data.categoryType1 }}</p>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()" class="cancel-button">Cancel</button>
+    <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>
+  </div>
+</div>
