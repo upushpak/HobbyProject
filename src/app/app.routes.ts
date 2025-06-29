@@ -5,6 +5,8 @@ import { AddStampComponent } from './add-stamp/add-stamp.component';
 import { EditStampComponent } from './edit-stamp/edit-stamp.component';
 import { DashboardComponent } from './dashboard/dashboard';
 import { AuditComponent } from './audit.component';
+import { ReferenceLinksComponent } from './reference-links/reference-links.component';
+import { WantedStampsComponent } from './wanted-stamps/wanted-stamps.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,4 +16,6 @@ export const routes: Routes = [
   { path: 'stamps/:id', component: StampDetailsComponent },
   { path: 'stamps/edit/:id', component: EditStampComponent },
   { path: 'audit', component: AuditComponent },
+  { path: 'reference-links', component: ReferenceLinksComponent },
+  { path: 'wanted-stamps', component: WantedStampsComponent },
 ];

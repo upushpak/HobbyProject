@@ -1,0 +1,70 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Wanted Stamps</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="wantedStampForm" (ngSubmit)="editingStamp ? updateWantedStamp() : addWantedStamp()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="stampType" class="form-label">Stamp Type</label>
+              <select id="stampType" formControlName="stampType" class="form-control">
+                <option *ngFor="let option of stampTypeOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="releaseYear" class="form-label">Released Year</label>
+              <input type="number" id="releaseYear" formControlName="releaseYear" class="form-control" placeholder="e.g., 2023">
+            </div>
+            <div class="mb-3">
+              <label for="dateOfIssue" class="form-label">Released Date</label>
+              <input type="date" id="dateOfIssue" formControlName="dateOfIssue" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label for="name" class="form-label">Stamp Name <span class="text-danger">*</span></label>
+              <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter Stamp Name" required>
+              <div *ngIf="wantedStampForm.get('name')?.invalid && wantedStampForm.get('name')?.touched" class="text-danger">
+                Stamp Name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="aboutStamp" class="form-label">About Stamp</label>
+              <textarea id="aboutStamp" formControlName="aboutStamp" class="form-control" placeholder="Enter details about the stamp" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="value" class="form-label">Value (₹)</label>
+              <input type="number" id="value" formControlName="value" class="form-control" placeholder="e.g., 100">
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary me-2">{{ editingStamp ? 'Update Wanted Stamp' : 'Add Wanted Stamp' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()" *ngIf="editingStamp">Cancel</button>
+      </form>
+
+      <hr class="my-4">
+
+      <h3>My Wanted Stamps</h3>
+      <div *ngIf="wantedStamps.length === 0" class="alert alert-info">
+        No wanted stamps added yet.
+      </div>
+      <ul class="list-group">
+        <li *ngFor="let stamp of wantedStamps" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ stamp.name }}</strong> ({{ stamp.stampType ?? 'N/A' }})
+            <small class="text-muted d-block">Released: {{ stamp.releaseYear ?? 'N/A' }} ({{ stamp.dateOfIssue ?? 'N/A' }})</small>
+            <small class="text-muted d-block">Value: ₹{{ stamp.value ?? 'N/A' }}</small>
+            <small class="text-muted d-block">About: {{ stamp.aboutStamp ?? 'N/A' }}</small>
+            <small class="text-muted d-block">Added On: {{ stamp.addedOn | date:'medium' }}</small>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-info me-2" (click)="editWantedStamp(stamp)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteWantedStamp(stamp.id)">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

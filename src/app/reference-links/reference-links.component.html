@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Reference Links</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="referenceLinkForm" (ngSubmit)="editingLink ? updateLink() : addLink()">
+        <div class="mb-3">
+          <label for="url" class="form-label">URL</label>
+          <input type="url" id="url" formControlName="url" class="form-control" placeholder="Enter URL" required>
+          <div *ngIf="referenceLinkForm.get('url')?.invalid && referenceLinkForm.get('url')?.touched" class="text-danger">
+            URL is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description" formControlName="description" class="form-control" placeholder="Enter description" rows="3" required></textarea>
+          <div *ngIf="referenceLinkForm.get('description')?.invalid && referenceLinkForm.get('description')?.touched" class="text-danger">
+            Description is required.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary me-2">{{ editingLink ? 'Update Link' : 'Add Link' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()" *ngIf="editingLink">Cancel</button>
+      </form>
+
+      <hr class="my-4">
+
+      <h3>Existing Links</h3>
+      <div *ngIf="referenceLinks.length === 0" class="alert alert-info">
+        No reference links added yet.
+      </div>
+      <ul class="list-group">
+        <li *ngFor="let link of referenceLinks" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <a [href]="link.url" target="_blank">{{ link.description }}</a>
+            <small class="text-muted d-block">{{ link.url }}</small>
+            <small class="text-muted d-block">Added On: {{ link.addedOn | date:'medium' }}</small>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-info me-2" (click)="editLink(link)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteLink(link.id)">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
