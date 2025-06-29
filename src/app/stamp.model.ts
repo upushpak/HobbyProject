@@ -18,4 +18,6 @@ export interface Stamp {
   files?: string[]; // Assuming files are stored as an array of strings (e.g., file paths or URLs)
   createdAt?: Date;
   fieldTimestamps?: { [key: string]: Date };
+  numberOfStamps?: number;
+  stampValues?: (number | null)[];
 }

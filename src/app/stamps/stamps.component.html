@@ -28,9 +28,7 @@
       </th>
       <th (click)="sortData('value')">Value (₹)
         <i *ngIf="sortColumn === 'value'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
-      </th>
-      
-      <th (click)="sortData('location')">Location
+      </th><th (click)="sortData('location')">Location
         <i *ngIf="sortColumn === 'location'" class="bi" [class.bi-arrow-up]="sortDirection === 'asc'" [class.bi-arrow-down]="sortDirection === 'desc'"></i>
       </th>
       <th (click)="sortData('categoryType1')">Category Type 1
@@ -89,7 +87,6 @@
       <td>{{ stamp.specificStampDetails }}</td>
       <td>{{ stamp.celebratingYear }}</td>
       <td>{{ stamp.value }}</td>
-      
       <td>{{ stamp.location }}</td>
       <td>{{ stamp.categoryType1 }}</td>
       <td>{{ stamp.categoryType2 }}</td>

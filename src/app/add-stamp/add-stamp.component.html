@@ -53,6 +53,23 @@
               <label for="celebratingYear">Celebrating Year</label>
               <input type="text" id="celebratingYear" class="form-control" formControlName="celebratingYear" placeholder="e.g., 50th Anniversary">
             </div>
+            <div class="form-group mb-3" *ngIf="stampForm.get('stampType')?.value === 'Miniature Sheet'">
+              <label for="numberOfStamps">Number of Stamps <span class="text-danger">*</span></label>
+              <input type="number" id="numberOfStamps" class="form-control" formControlName="numberOfStamps"
+                     [class.is-invalid]="stampForm.get('numberOfStamps')?.invalid && stampForm.get('numberOfStamps')?.touched">
+              <div *ngIf="stampForm.get('numberOfStamps')?.invalid && stampForm.get('numberOfStamps')?.touched" class="invalid-feedback">
+                Number of Stamps is required.
+              </div>
+            </div>
+            <div *ngIf="stampForm.get('stampType')?.value === 'Miniature Sheet'">
+              <div formArrayName="stampValues" class="mb-3">
+                <label>Stamp Values</label>
+                <div *ngFor="let control of stampValues.controls; let i = index" class="input-group mb-2">
+                  <span class="input-group-text">Stamp {{ i + 1 }}</span>
+                  <input type="number" class="form-control" [formControlName]="i">
+                </div>
+              </div>
+            </div>
             <div class="form-group mb-3">
               <label for="value">Value (₹) <span class="text-danger">*</span></label>
               <input type="number" id="value" class="form-control" formControlName="value"
@@ -77,13 +94,13 @@
                 Category Type 1 is required.
               </div>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3" *ngIf="stampForm.get('stampType')?.value !== 'Miniature Sheet'">
               <label for="categoryType2">Category Type 2</label>
               <select id="categoryType2" class="form-control" formControlName="categoryType2">
                 <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>
               </select>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group mb-3" *ngIf="stampForm.get('stampType')?.value !== 'Miniature Sheet'">
               <label for="categoryType3">Category Type 3</label>
               <select id="categoryType3" class="form-control" formControlName="categoryType3">
                 <option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</option>

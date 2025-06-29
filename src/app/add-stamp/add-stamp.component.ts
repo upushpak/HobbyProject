@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormArray } from '@angular/forms';
 import { StampService } from '../stamp.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './add-stamp.component.html',
   styleUrls: ['./add-stamp.component.css']
 })
-export class AddStampComponent {
+export class AddStampComponent implements OnInit {
   stampForm: FormGroup;
   files: File[] = []; // To store selected files
   allowedFileTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/svg+xml', 'text/html'];
@@ -72,12 +72,68 @@ export class AddStampComponent {
       comments: [''],
       location: [''],
       referenceLinks: this.fb.array([]),
-      files: [[]] // Form control for files
+      files: [[]],
+      numberOfStamps: [null],
+      stampValues: this.fb.array([])
+    });
+  }
+
+  ngOnInit(): void {
+    this.stampForm.get('stampType')?.valueChanges.subscribe((value: string) => {
+      const categoryType2 = this.stampForm.get('categoryType2');
+      const categoryType3 = this.stampForm.get('categoryType3');
+      const numberOfStamps = this.stampForm.get('numberOfStamps');
+      const valueControl = this.stampForm.get('value');
+
+      if (value === 'Miniature Sheet') {
+        categoryType2?.reset();
+        categoryType2?.disable();
+        categoryType3?.reset();
+        categoryType3?.disable();
+        numberOfStamps?.setValidators([Validators.required]);
+        valueControl?.disable();
+      } else {
+        categoryType2?.enable();
+        categoryType3?.enable();
+        numberOfStamps?.clearValidators();
+        numberOfStamps?.reset();
+        valueControl?.enable();
+        this.stampValues.clear();
+      }
+      numberOfStamps?.updateValueAndValidity();
+    });
+
+    this.stampForm.get('numberOfStamps')?.valueChanges.subscribe((numStamps: number) => {
+      this.updateStampValues(numStamps);
+    });
+
+    this.stampValues.valueChanges.subscribe(values => {
+      const totalValue = values.reduce((acc:any, curr:any) => acc + curr, 0);
+      this.stampForm.get('value')?.setValue(totalValue, { emitEvent: false });
     });
   }
 
   get referenceLinks() {
     return this.stampForm.get('referenceLinks') as FormArray;
+  }
+
+  get stampValues() {
+    return this.stampForm.get('stampValues') as FormArray;
+  }
+
+  updateStampValues(numStamps: number) {
+    if (numStamps === null || numStamps < 0) {
+      this.stampValues.clear();
+      return;
+    }
+
+    while (this.stampValues.length !== numStamps) {
+      if (this.stampValues.length < numStamps) {
+        this.stampValues.push(this.fb.control(null, Validators.required));
+      } else {
+        this.stampValues.removeAt(this.stampValues.length - 1);
+      }
+    }
   }
 
   addReferenceLink() {

@@ -11,8 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent implements OnInit {
   totalStampCount: number = 0;
+  totalMiniatureSheetCount: number = 0;
   totalStampValue: number = 0;
   stampsByYear: { [year: number]: number } = {};
+  miniatureSheetsByYear: { [year: number]: number } = {};
   stampsByCategoryType1: { [category: string]: number } = {};
   categorySummary: { category: string, count: number, totalValue: number }[] = [];
   stampTypeSummary: { type: string, count: number, totalValue: number }[] = [];
@@ -25,11 +27,13 @@ export class DashboardComponent implements OnInit {
     this.calculateStampsByCategoryType1();
     this.calculateCategorySummary();
     this.calculateStampTypeSummary();
+    this.calculateMiniatureSheetsByYear();
   }
 
   private calculateSummary(): void {
     const stamps = this.stampService.getStamps();
-    this.totalStampCount = stamps.length;
+    this.totalStampCount = stamps.filter(stamp => stamp.stampType === 'Stamp').length;
+    this.totalMiniatureSheetCount = stamps.filter(stamp => stamp.stampType === 'Miniature Sheet').length;
     this.totalStampValue = stamps.reduce((sum, stamp) => sum + stamp.value, 0);
   }
 
@@ -39,6 +43,16 @@ export class DashboardComponent implements OnInit {
     stamps.forEach(stamp => {
       if (stamp.releaseYear) {
         this.stampsByYear[stamp.releaseYear] = (this.stampsByYear[stamp.releaseYear] || 0) + 1;
+      }
+    });
+  }
+
+  private calculateMiniatureSheetsByYear(): void {
+    const stamps = this.stampService.getStamps();
+    this.miniatureSheetsByYear = {};
+    stamps.filter(stamp => stamp.stampType === 'Miniature Sheet').forEach(stamp => {
+      if (stamp.releaseYear) {
+        this.miniatureSheetsByYear[stamp.releaseYear] = (this.miniatureSheetsByYear[stamp.releaseYear] || 0) + 1;
       }
     });
   }
@@ -106,6 +120,13 @@ export class DashboardComponent implements OnInit {
     return Object.keys(this.stampsByCategoryType1)
       .sort()
       .map(category => `${category}: ${this.stampsByCategoryType1[category]}`)
+      .join(', ');
+  }
+
+  get formattedMiniatureSheetsByYear(): string {
+    return Object.keys(this.miniatureSheetsByYear)
+      .sort((a, b) => Number(a) - Number(b))
+      .map(year => `${year}: ${this.miniatureSheetsByYear[Number(year)]}`)
       .join(', ');
   }
 }

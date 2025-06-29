@@ -71,6 +71,15 @@
         <td><i class="bi bi-pencil-fill" (click)="toggleEdit('celebratingYear')" style="cursor: pointer;"></i></td>
         <td>{{ stamp.fieldTimestamps?.['celebratingYear'] | date:'medium' }}</td>
       </tr>
+      <tr *ngIf="stamp.stampType === 'Miniature Sheet'">
+        <td><strong>Number of Stamps</strong></td>
+        <td>
+          <span *ngIf="!editMode['numberOfStamps']">{{ stamp.numberOfStamps ?? 'NA' }}</span>
+          <input *ngIf="editMode['numberOfStamps']" type="number" [(ngModel)]="editedStamp.numberOfStamps" (blur)="updateField('numberOfStamps')">
+        </td>
+        <td><i class="bi bi-pencil-fill" (click)="toggleEdit('numberOfStamps')" style="cursor: pointer;"></i></td>
+        <td>{{ stamp.fieldTimestamps?.['numberOfStamps'] | date:'medium' }}</td>
+      </tr>
       <tr>
         <td><strong>Value</strong></td>
         <td>
@@ -79,6 +88,18 @@
         </td>
         <td><i class="bi bi-pencil-fill" (click)="toggleEdit('value')" style="cursor: pointer;"></i></td>
         <td>{{ stamp.fieldTimestamps?.['value'] | date:'medium' }}</td>
+      </tr>
+      <tr *ngIf="stamp.stampType === 'Miniature Sheet' && stamp.stampValues && stamp.stampValues.length > 0">
+        <td><strong>Stamp Values</strong></td>
+        <td>
+          <ul class="list-unstyled">
+            <li *ngFor="let val of stamp.stampValues; let i = index">
+              Stamp {{ i + 1 }}: ₹ {{ val }}
+            </li>
+          </ul>
+        </td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><strong>About Stamp</strong></td>

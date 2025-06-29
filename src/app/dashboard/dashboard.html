@@ -7,11 +7,13 @@
       <p>Welcome to my world of Stamp Collection. Since 2002.</p>
       <div class="row">
         <div class="col-md-6">
-          <p><strong>Total Stamps:</strong> {{ totalStampCount }}</p>
-          <p><strong>Total Value:</strong> ₹{{ totalStampValue | number:'1.2-2' }}</p>
+          <p><strong>Stamp Count:</strong> {{ totalStampCount }}</p>
+          <p><strong>MS Count:</strong> {{ totalMiniatureSheetCount }}</p>
+          <p><strong>Total Stamp Value:</strong> ₹{{ totalStampValue | number:'1.2-2' }}</p>
         </div>
         <div class="col-md-6">
           <p><strong>Stamps by Year:</strong> {{ formattedStampsByYear }}</p>
+          <p><strong>Miniature Sheets by Year:</strong> {{ formattedMiniatureSheetsByYear }}</p>
           <p><strong>Stamps by Category Type 1:</strong> {{ formattedStampsByCategoryType1 }}</p>
         </div>
       </div>
