@@ -16,7 +16,9 @@ export class AuditComponent implements OnInit {
   constructor(private auditService: AuditService) { }
 
   ngOnInit(): void {
-    this.auditLog = this.auditService.getAuditLog();
+    this.auditService.getAuditLog().subscribe(log => {
+      this.auditLog = log.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    });
   }
 
   formatDetails(entry: Audit): string {

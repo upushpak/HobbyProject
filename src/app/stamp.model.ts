@@ -3,7 +3,7 @@ export interface Stamp {
   stampType?: string;
   name: string;
   dateOfIssue: string;
-  value: number;
+  value: number | null;
   releaseYear?: number;
   stampSubHeader?: string;
   specificStampDetails?: string;

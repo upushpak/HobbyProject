@@ -59,35 +59,36 @@ export class StampDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    const foundStamp = this.stampService.getStamp(id);
-    if (foundStamp) {
-      this.stamp = foundStamp;
-      this.editedStamp = { 
-        ...foundStamp, 
-        referenceLinks: foundStamp.referenceLinks || [],
-        files: foundStamp.files || [],
-        fieldTimestamps: foundStamp.fieldTimestamps || {}
-      }; // Create a copy for editing
+    this.stampService.getStamp(id).subscribe(foundStamp => {
+      if (foundStamp) {
+        this.stamp = foundStamp;
+        this.editedStamp = { 
+          ...foundStamp, 
+          referenceLinks: foundStamp.referenceLinks || [],
+          files: foundStamp.files || [],
+          fieldTimestamps: foundStamp.fieldTimestamps || {}
+        }; // Create a copy for editing
 
-      // Initialize fieldTimestamps for all fields if not already set
-      if (this.stamp) {
-        if (!this.stamp.fieldTimestamps) {
-          this.stamp.fieldTimestamps = {};
-        }
-        for (const key in this.stamp) {
-          if (this.stamp.hasOwnProperty(key) && key !== 'fieldTimestamps' && key !== 'createdAt') {
-            if (!(this.stamp.fieldTimestamps as any)[key] && this.stamp.createdAt) {
-              (this.stamp.fieldTimestamps as any)[key] = this.stamp.createdAt;
+        // Initialize fieldTimestamps for all fields if not already set
+        if (this.stamp) {
+          if (!this.stamp.fieldTimestamps) {
+            this.stamp.fieldTimestamps = {};
+          }
+          for (const key in this.stamp) {
+            if (this.stamp.hasOwnProperty(key) && key !== 'fieldTimestamps' && key !== 'createdAt') {
+              if (!(this.stamp.fieldTimestamps as any)[key] && this.stamp.createdAt) {
+                (this.stamp.fieldTimestamps as any)[key] = this.stamp.createdAt;
+              }
             }
           }
         }
+      } else {
+        // Handle case where stamp is not found, e.g., navigate away or show error
+        // For now, we'll initialize with default values to prevent errors
+        this.stamp = { id: 0, name: '', dateOfIssue: '', value: 0, referenceLinks: [], files: [], stampType: '' };
+        this.editedStamp = { ...this.stamp };
       }
-    } else {
-      // Handle case where stamp is not found, e.g., navigate away or show error
-      // For now, we'll initialize with default values to prevent errors
-      this.stamp = { id: 0, name: '', dateOfIssue: '', value: 0, referenceLinks: [], files: [], stampType: '' };
-      this.editedStamp = { ...this.stamp };
-    }
+    });
   }
 
   toggleEdit(field: string): void {
@@ -109,8 +110,9 @@ export class StampDetailsComponent implements OnInit {
       }
       this.stamp.fieldTimestamps[field] = new Date();
 
-      this.stampService.updateStamp(this.stamp);
-      this.toggleEdit(field); // Exit edit mode for this field
+      this.stampService.updateStamp(this.stamp).subscribe(() => {
+        this.toggleEdit(field); // Exit edit mode for this field
+      });
     }
   }
 

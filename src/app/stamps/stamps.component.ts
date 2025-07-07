@@ -59,9 +59,15 @@ export class StampsComponent implements OnInit {
   constructor(private stampService: StampService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.allStamps = this.stampService.getStamps();
-    this.applyFilters(); // Apply filters first
-    this.sortData(this.sortColumn, true); // Apply default sort
+    this.loadStamps();
+  }
+
+  loadStamps(): void {
+    this.stampService.getStamps().subscribe(stamps => {
+      this.allStamps = stamps;
+      this.applyFilters(); // Apply filters first
+      this.sortData(this.sortColumn, true); // Apply default sort
+    });
   }
 
   applyFilters(): void {
@@ -132,9 +138,9 @@ export class StampsComponent implements OnInit {
   }
 
   deleteStamp(id: number): void {
-    this.stampService.deleteStamp(id);
-    this.allStamps = this.stampService.getStamps(); // Update allStamps after deletion
-    this.applyFilters(); // Re-apply filters and sort after deletion
+    this.stampService.deleteStamp(id).subscribe(() => {
+      this.loadStamps(); // Reload stamps after deletion
+    });
   }
 
   confirmDelete(stamp: Stamp): void {

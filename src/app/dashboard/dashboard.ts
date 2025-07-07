@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StampService } from '../stamp.service';
 import { CommonModule } from '@angular/common';
+import { Stamp } from '../stamp.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,23 +23,23 @@ export class DashboardComponent implements OnInit {
   constructor(private stampService: StampService) { }
 
   ngOnInit(): void {
-    this.calculateSummary();
-    this.calculateStampsByYear();
-    this.calculateStampsByCategoryType1();
-    this.calculateCategorySummary();
-    this.calculateStampTypeSummary();
-    this.calculateMiniatureSheetsByYear();
+    this.stampService.getStamps().subscribe(stamps => {
+      this.calculateSummary(stamps);
+      this.calculateStampsByYear(stamps);
+      this.calculateMiniatureSheetsByYear(stamps);
+      this.calculateStampsByCategoryType1(stamps);
+      this.calculateCategorySummary(stamps);
+      this.calculateStampTypeSummary(stamps);
+    });
   }
 
-  private calculateSummary(): void {
-    const stamps = this.stampService.getStamps();
+  private calculateSummary(stamps: Stamp[]): void {
     this.totalStampCount = stamps.filter(stamp => stamp.stampType === 'Stamp').length;
     this.totalMiniatureSheetCount = stamps.filter(stamp => stamp.stampType === 'Miniature Sheet').length;
-    this.totalStampValue = stamps.reduce((sum, stamp) => sum + stamp.value, 0);
+    this.totalStampValue = stamps.reduce((sum, stamp) => sum + (stamp.value ?? 0), 0);
   }
 
-  private calculateStampsByYear(): void {
-    const stamps = this.stampService.getStamps();
+  private calculateStampsByYear(stamps: Stamp[]): void {
     this.stampsByYear = {};
     stamps.forEach(stamp => {
       if (stamp.releaseYear) {
@@ -47,9 +48,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private calculateMiniatureSheetsByYear(): void {
-    const stamps = this.stampService.getStamps();
-    this.miniatureSheetsByYear = {};
+  private calculateMiniatureSheetsByYear(stamps: Stamp[]): void {
     stamps.filter(stamp => stamp.stampType === 'Miniature Sheet').forEach(stamp => {
       if (stamp.releaseYear) {
         this.miniatureSheetsByYear[stamp.releaseYear] = (this.miniatureSheetsByYear[stamp.releaseYear] || 0) + 1;
@@ -57,8 +56,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private calculateStampsByCategoryType1(): void {
-    const stamps = this.stampService.getStamps();
+  private calculateStampsByCategoryType1(stamps: Stamp[]): void {
     this.stampsByCategoryType1 = {};
     stamps.forEach(stamp => {
       if (stamp.categoryType1) {
@@ -69,8 +67,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private calculateCategorySummary(): void {
-    const stamps = this.stampService.getStamps();
+  private calculateCategorySummary(stamps: Stamp[]): void {
     const summaryMap: { [category: string]: { count: number, totalValue: number } } = {};
 
     stamps.forEach(stamp => {
@@ -79,7 +76,7 @@ export class DashboardComponent implements OnInit {
         summaryMap[category] = { count: 0, totalValue: 0 };
       }
       summaryMap[category].count++;
-      summaryMap[category].totalValue += stamp.value;
+      summaryMap[category].totalValue += (stamp.value ?? 0);
     });
 
     this.categorySummary = Object.keys(summaryMap).map(category => ({
@@ -89,8 +86,7 @@ export class DashboardComponent implements OnInit {
     })).sort((a, b) => a.category.localeCompare(b.category));
   }
 
-  private calculateStampTypeSummary(): void {
-    const stamps = this.stampService.getStamps();
+  private calculateStampTypeSummary(stamps: Stamp[]): void {
     const summaryMap: { [type: string]: { count: number, totalValue: number } } = {};
 
     stamps.forEach(stamp => {
@@ -99,7 +95,7 @@ export class DashboardComponent implements OnInit {
         summaryMap[type] = { count: 0, totalValue: 0 };
       }
       summaryMap[type].count++;
-      summaryMap[type].totalValue += stamp.value;
+      summaryMap[type].totalValue += (stamp.value ?? 0);
     });
 
     this.stampTypeSummary = Object.keys(summaryMap).map(type => ({

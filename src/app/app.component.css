@@ -16,3 +16,10 @@ body {
 .nav-link:hover {
   color: #6A5ACD !important; /* SlateBlue - a slightly darker purple for hover */
 }
+
+.version-info {
+  font-size: 0.6rem;
+  color: #6c757d; /* Muted grey color */
+  text-align: right;
+  line-height: 1;
+}

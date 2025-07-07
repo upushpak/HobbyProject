@@ -172,8 +172,9 @@ export class AddStampComponent implements OnInit {
         files: this.files.map(file => file.name), // Pass only file names to the service
         createdAt: new Date()
       };
-      this.stampService.addStamp(newStamp);
-      this.router.navigate(['/stamps']);
+      this.stampService.addStamp(newStamp).subscribe(() => {
+        this.router.navigate(['/stamps']);
+      });
     } else {
       this.markAllAsTouched(this.stampForm);
     }

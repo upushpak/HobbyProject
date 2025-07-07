@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Audit } from './audit.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuditService {
-  private auditLog: Audit[] = [];
+  private apiUrl = 'http://localhost:3000/api/audit';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  logAction(action: string, stampId: number, stampName: string, details?: any) {
-    const logEntry: Audit = {
+  logAction(action: string, stampId: number, stampName: string, details?: any): Observable<Audit> {
+    const logEntry: Omit<Audit, 'id' | 'timestamp'> = {
       action,
       stampId,
       stampName,
-      timestamp: new Date(),
       details
     };
-    this.auditLog.push(logEntry);
+    return this.http.post<Audit>(this.apiUrl, logEntry);
   }
 
-  getAuditLog(): Audit[] {
-    return this.auditLog;
+  getAuditLog(): Observable<Audit[]> {
+    return this.http.get<Audit[]>(this.apiUrl);
   }
 }

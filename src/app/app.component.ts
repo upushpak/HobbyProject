@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,6 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 })
 export class AppComponent {
   title = 'stamp-collection';
+  version: string = version;
+  lastUpdated = '07Jul25';
 }

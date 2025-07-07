@@ -1,0 +1,216 @@
+{
+  "stamps": [
+    {
+      "id": 1751899462369,
+      "stampType": "Stamp",
+      "releaseYear": 2025,
+      "dateOfIssue": "2025-07-01",
+      "name": "Test",
+      "stampSubHeader": "Testing",
+      "specificStampDetails": "Test",
+      "celebratingYear": "100",
+      "value": 5,
+      "extraDetails": "Test",
+      "categoryType1": "Movement",
+      "categoryType2": "School/College/University",
+      "categoryType3": "Personality",
+      "comments": "Test",
+      "location": "India",
+      "referenceLinks": [
+        "www.google.com"
+      ],
+      "files": [],
+      "numberOfStamps": null,
+      "stampValues": [],
+      "createdAt": "2025-07-07T14:44:22.369Z",
+      "fieldTimestamps": {
+        "id": "2025-07-07T14:44:22.369Z",
+        "stampType": "2025-07-07T14:44:22.369Z",
+        "releaseYear": "2025-07-07T15:14:04.133Z",
+        "dateOfIssue": "2025-07-07T14:44:22.369Z",
+        "name": "2025-07-07T14:44:22.369Z",
+        "stampSubHeader": "2025-07-07T15:14:10.974Z",
+        "specificStampDetails": "2025-07-07T14:44:22.369Z",
+        "celebratingYear": "2025-07-07T14:44:22.369Z",
+        "value": "2025-07-07T14:44:22.369Z",
+        "extraDetails": "2025-07-07T14:44:22.369Z",
+        "categoryType1": "2025-07-07T14:44:22.369Z",
+        "categoryType2": "2025-07-07T14:44:22.369Z",
+        "categoryType3": "2025-07-07T14:44:22.369Z",
+        "comments": "2025-07-07T14:44:22.369Z",
+        "location": "2025-07-07T14:44:22.369Z",
+        "referenceLinks": "2025-07-07T14:44:22.369Z",
+        "files": "2025-07-07T14:44:22.369Z",
+        "numberOfStamps": "2025-07-07T14:44:22.369Z",
+        "stampValues": "2025-07-07T14:44:22.369Z"
+      }
+    },
+    {
+      "id": 1751899581267,
+      "stampType": "Miniature Sheet",
+      "releaseYear": 2022,
+      "dateOfIssue": "2025-06-30",
+      "name": "Sheet",
+      "stampSubHeader": "Sheet",
+      "specificStampDetails": "Sheet",
+      "celebratingYear": "100",
+      "extraDetails": "Sheeet",
+      "categoryType1": "Personality",
+      "comments": "Sheet",
+      "location": "Hyderabad",
+      "referenceLinks": [
+        "www.fedex.com"
+      ],
+      "files": [],
+      "numberOfStamps": 3,
+      "stampValues": [
+        10,
+        5,
+        10
+      ],
+      "createdAt": "2025-07-07T14:46:21.267Z"
+    }
+  ],
+  "audit": [
+    {
+      "id": 1751899462462,
+      "action": "Add Stamp",
+      "stampId": 1751899462369,
+      "stampName": "Test"
+    },
+    {
+      "id": 1751899471775,
+      "action": "Delete Stamp",
+      "stampId": 3,
+      "stampName": ""
+    },
+    {
+      "id": 1751899474770,
+      "action": "Delete Stamp",
+      "stampId": 2,
+      "stampName": ""
+    },
+    {
+      "id": 1751899477420,
+      "action": "Delete Stamp",
+      "stampId": 1,
+      "stampName": ""
+    },
+    {
+      "id": 1751899581307,
+      "action": "Add Stamp",
+      "stampId": 1751899581267,
+      "stampName": "Sheet"
+    },
+    {
+      "id": 1751901244207,
+      "timestamp": "2025-07-07T15:14:04.207Z",
+      "action": "Update Stamp",
+      "stampId": 1751899462369,
+      "stampName": "Test",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751899462369,
+          "stampType": "Stamp",
+          "releaseYear": 2025,
+          "dateOfIssue": "2025-07-01",
+          "name": "Test",
+          "stampSubHeader": "Test",
+          "specificStampDetails": "Test",
+          "celebratingYear": "100",
+          "value": 5,
+          "extraDetails": "Test",
+          "categoryType1": "Movement",
+          "categoryType2": "School/College/University",
+          "categoryType3": "Personality",
+          "comments": "Test",
+          "location": "India",
+          "referenceLinks": [
+            "www.google.com"
+          ],
+          "files": [],
+          "numberOfStamps": null,
+          "stampValues": [],
+          "createdAt": "2025-07-07T14:44:22.369Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T14:44:22.369Z",
+            "stampType": "2025-07-07T14:44:22.369Z",
+            "releaseYear": "2025-07-07T15:14:04.133Z",
+            "dateOfIssue": "2025-07-07T14:44:22.369Z",
+            "name": "2025-07-07T14:44:22.369Z",
+            "stampSubHeader": "2025-07-07T14:44:22.369Z",
+            "specificStampDetails": "2025-07-07T14:44:22.369Z",
+            "celebratingYear": "2025-07-07T14:44:22.369Z",
+            "value": "2025-07-07T14:44:22.369Z",
+            "extraDetails": "2025-07-07T14:44:22.369Z",
+            "categoryType1": "2025-07-07T14:44:22.369Z",
+            "categoryType2": "2025-07-07T14:44:22.369Z",
+            "categoryType3": "2025-07-07T14:44:22.369Z",
+            "comments": "2025-07-07T14:44:22.369Z",
+            "location": "2025-07-07T14:44:22.369Z",
+            "referenceLinks": "2025-07-07T14:44:22.369Z",
+            "files": "2025-07-07T14:44:22.369Z",
+            "numberOfStamps": "2025-07-07T14:44:22.369Z",
+            "stampValues": "2025-07-07T14:44:22.369Z"
+          }
+        }
+      }
+    },
+    {
+      "id": 1751901251016,
+      "timestamp": "2025-07-07T15:14:11.016Z",
+      "action": "Update Stamp",
+      "stampId": 1751899462369,
+      "stampName": "Test",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751899462369,
+          "stampType": "Stamp",
+          "releaseYear": 2025,
+          "dateOfIssue": "2025-07-01",
+          "name": "Test",
+          "stampSubHeader": "Testing",
+          "specificStampDetails": "Test",
+          "celebratingYear": "100",
+          "value": 5,
+          "extraDetails": "Test",
+          "categoryType1": "Movement",
+          "categoryType2": "School/College/University",
+          "categoryType3": "Personality",
+          "comments": "Test",
+          "location": "India",
+          "referenceLinks": [
+            "www.google.com"
+          ],
+          "files": [],
+          "numberOfStamps": null,
+          "stampValues": [],
+          "createdAt": "2025-07-07T14:44:22.369Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T14:44:22.369Z",
+            "stampType": "2025-07-07T14:44:22.369Z",
+            "releaseYear": "2025-07-07T15:14:04.133Z",
+            "dateOfIssue": "2025-07-07T14:44:22.369Z",
+            "name": "2025-07-07T14:44:22.369Z",
+            "stampSubHeader": "2025-07-07T15:14:10.974Z",
+            "specificStampDetails": "2025-07-07T14:44:22.369Z",
+            "celebratingYear": "2025-07-07T14:44:22.369Z",
+            "value": "2025-07-07T14:44:22.369Z",
+            "extraDetails": "2025-07-07T14:44:22.369Z",
+            "categoryType1": "2025-07-07T14:44:22.369Z",
+            "categoryType2": "2025-07-07T14:44:22.369Z",
+            "categoryType3": "2025-07-07T14:44:22.369Z",
+            "comments": "2025-07-07T14:44:22.369Z",
+            "location": "2025-07-07T14:44:22.369Z",
+            "referenceLinks": "2025-07-07T14:44:22.369Z",
+            "files": "2025-07-07T14:44:22.369Z",
+            "numberOfStamps": "2025-07-07T14:44:22.369Z",
+            "stampValues": "2025-07-07T14:44:22.369Z"
+          }
+        }
+      }
+    }
+  ]
+}
