@@ -13,7 +13,7 @@ import { GitCommit } from '../version-history.service';
 export class VersionHistoryDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<VersionHistoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { history: GitCommit[] }
+    @Inject(MAT_DIALOG_DATA) public data: { history: GitCommit[], appVersion: string }
   ) { }
 
   ngOnInit(): void { }

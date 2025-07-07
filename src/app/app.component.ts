@@ -36,7 +36,7 @@ export class AppComponent {
     this.versionHistoryService.getVersionHistory().subscribe(history => {
       this.dialog.open(VersionHistoryDialogComponent, {
         width: '800px',
-        data: { history }
+        data: { history, appVersion: this.version }
       });
     });
   }

@@ -7,6 +7,7 @@ export interface GitCommit {
   author: string;
   date: string;
   message: string;
+  version?: string; // Add the optional version property
 }
 
 @Injectable({

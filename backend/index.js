@@ -151,7 +151,7 @@ const __dirname = path.dirname(__filename);
 // GET Git version history
 app.get('/api/version-history', (req, res) => {
   const repoRoot = path.join(__dirname, '..'); // Go up one level from backend directory
-  exec('git log --pretty=format:"%H%n%an%n%ad%n%s%n" --date=iso', { cwd: repoRoot }, (error, stdout, stderr) => {    if (error) {      console.error(`exec error: ${error}`);      return res.status(500).send('Error retrieving version history');    }    const commits = stdout.split('\n\n').filter(Boolean).map(commit => {      const [hash, author, date, ...messageLines] = commit.split('\n');      return {        hash,        author,        date,        message: messageLines.join('\n').trim()      };    });    res.json(commits);  });
+  exec('git log --pretty=format:"%H%n%an%n%ad%n%s%n" --date=iso', { cwd: repoRoot }, (error, stdout, stderr) => {    if (error) {      console.error(`exec error: ${error}`);      return res.status(500).send('Error retrieving version history');    }    const commits = stdout.split('\n\n').filter(Boolean).map(commit => {      const [hash, author, date, ...messageLines] = commit.split('\n');      const message = messageLines.join('\n').trim();      const versionMatch = message.match(/(?:Version|v)\s*(\d+\.\d+(?:\.\d+)?)/i);      const version = versionMatch ? versionMatch[1] : hash.substring(0, 7);      return {        hash,        author,        date,        message,        version // Add the extracted version      };    });    res.json(commits);  });
 });
 
 app.listen(port, () => {  console.log(`Backend server listening at http://localhost:${port}`);});
