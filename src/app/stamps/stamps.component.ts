@@ -62,6 +62,10 @@ export class StampsComponent implements OnInit {
     this.loadStamps();
   }
 
+  logStampId(id: number | undefined): void {
+    console.log('StampsComponent: Navigating with stamp ID:', id);
+  }
+
   loadStamps(): void {
     this.stampService.getStamps().subscribe(stamps => {
       this.allStamps = stamps;
@@ -155,7 +159,7 @@ export class StampsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result && stamp.id !== undefined) { // Add check for undefined stamp.id
         this.deleteStamp(stamp.id);
       }
     });

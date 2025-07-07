@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-excel-upload',
@@ -27,7 +28,7 @@ import { saveAs } from 'file-saver';
 export class ExcelUploadComponent {
   isLoading = false;
 
-  constructor(private stampService: StampService, private snackBar: MatSnackBar) {}
+  constructor(private stampService: StampService, private snackBar: MatSnackBar, private router: Router) {}
 
   onFileChange(event: any) {
     const target: DataTransfer = <DataTransfer>event.target;
@@ -40,10 +41,11 @@ export class ExcelUploadComponent {
       const bstr: string = e.target.result;
       const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
 
-      const wsname: string = wb.SheetNames[0];
+      const wsname: string = 'Stamps'; // Explicitly target the 'Stamps' sheet
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
-      const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      const data: any[] = XLSX.utils.sheet_to_json(ws);
+      console.log('Parsed Excel Data:', data); // Log the parsed data
       this.processExcelData(data);
     };
     reader.readAsBinaryString(target.files[0]);
@@ -51,32 +53,47 @@ export class ExcelUploadComponent {
 
   processExcelData(data: any[]) {
     this.isLoading = true;
-    const headers = data[0];
     const stampsToUpload: Stamp[] = [];
 
-    for (let i = 1; i < data.length; i++) {
-      const row = data[i];
+    for (const row of data) {
+      // Ensure row properties are correctly mapped, handling potential undefined values
       const stamp: Stamp = {
-        id: 0, // Will be assigned by the service or backend
-        name: row[headers.indexOf('name')],
-        dateOfIssue: row[headers.indexOf('dateOfIssue')],
-        value: row[headers.indexOf('value')],
-        stampType: row[headers.indexOf('stampType')] || undefined,
-        releaseYear: row[headers.indexOf('releaseYear')] || undefined,
-        stampSubHeader: row[headers.indexOf('stampSubHeader')] || undefined,
-        specificStampDetails: row[headers.indexOf('specificStampDetails')] || undefined,
-        celebratingYear: row[headers.indexOf('celebratingYear')] || undefined,
-        extraDetails: row[headers.indexOf('extraDetails')] || undefined,
-        categoryType1: row[headers.indexOf('categoryType1')] || undefined,
-        categoryType2: row[headers.indexOf('categoryType2')] || undefined,
-        categoryType3: row[headers.indexOf('categoryType3')] || undefined,
-        comments: row[headers.indexOf('comments')] || undefined,
-        location: row[headers.indexOf('location')] || undefined,
-        referenceLinks: row[headers.indexOf('referenceLinks')] ? row[headers.indexOf('referenceLinks')].split(',') : undefined,
-        files: row[headers.indexOf('files')] ? row[headers.indexOf('files')].split(',') : undefined,
-        numberOfStamps: row[headers.indexOf('numberOfStamps')] || undefined,
-        stampValues: row[headers.indexOf('stampValues')] ? row[headers.indexOf('stampValues')].split(',').map(Number) : undefined,
+        // id: 0, // Removed: ID will be assigned by the service or backend
+        name: row['name'] || '',
+        dateOfIssue: (() => {
+          let dateValue = row['dateOfIssue'];
+          if (typeof dateValue === 'number') {
+            // Convert Excel serial date number to YYYY-MM-DD string
+            return XLSX.SSF.format('yyyy-mm-dd', dateValue);
+          } else if (typeof dateValue === 'string') {
+            // Handle DD-MM-YYYY string format
+            const dateParts = dateValue.split('-');
+            if (dateParts.length === 3) {
+              return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+            } else {
+              return dateValue; // Return as is if not in DD-MM-YYYY format
+            }
+          }
+          return ''; // Default empty string if no date value
+        })(),
+        value: row['value'] || null,
+        stampType: row['stampType'] || undefined,
+        releaseYear: row['releaseYear'] || undefined,
+        stampSubHeader: row['stampSubHeader'] || undefined,
+        specificStampDetails: row['specificStampDetails'] || undefined,
+        celebratingYear: row['celebratingYear'] || undefined,
+        extraDetails: row['extraDetails'] || undefined,
+        categoryType1: row['categoryType1'] || undefined,
+        categoryType2: row['categoryType2'] || undefined,
+        categoryType3: row['categoryType3'] || undefined,
+        comments: row['comments'] || undefined,
+        location: row['location'] || undefined,
+        referenceLinks: row['referenceLinks'] ? String(row['referenceLinks']).split(',') : undefined,
+        files: row['files'] ? String(row['files']).split(',') : undefined,
+        numberOfStamps: row['numberOfStamps'] || undefined,
+        stampValues: row['stampValues'] ? String(row['stampValues']).split(',').map(Number) : undefined,
       };
+      console.log('Processing stamp:', stamp.name, 'Date of Issue:', stamp.dateOfIssue); // Added console.log
       stampsToUpload.push(stamp);
     }
 
@@ -85,6 +102,7 @@ export class ExcelUploadComponent {
       next: () => {
         this.snackBar.open('Stamps uploaded successfully!', 'Close', { duration: 3000 });
         this.isLoading = false;
+        this.router.navigate(['/stamps']); // Navigate to stamps list after successful upload
       },
       error: (err) => {
         console.error('Error uploading stamps:', err);
@@ -95,39 +113,6 @@ export class ExcelUploadComponent {
   }
 
   downloadSampleExcel(): void {
-    const stampTypeOptions: string[] = [
-      'Stamp',
-      'Miniature Sheet',
-      'First Day Cover',
-      'Special Cover'
-    ];
-
-    const categoryOptions: string[] = [
-      'Cinema/Arts/Stages',
-      'Company/Organization/Factory/Industry',
-      'Conference/Meeting',
-      'Dance/Culture/Art',
-      'Defence',
-      'Fashion',
-      'Festival',
-      'Flora/Fauna',
-      'Food',
-      'Govt. Office',
-      'History',
-      'Initiatives',
-      'Institute/Research',
-      'Joint Issue',
-      'Location',
-      'Movement',
-      'Personality',
-      'Religious',
-      'School/College/University',
-      'Science',
-      'Sports/Games/Events',
-      'War',
-      'World Day'
-    ];
-
     const headers: (keyof Stamp)[] = [
       'name',
       'dateOfIssue',
@@ -152,58 +137,8 @@ export class ExcelUploadComponent {
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([headers]);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
-    // Add a hidden sheet for dropdown values
-    const dropdownWs: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([
-      stampTypeOptions,
-      categoryOptions
-    ]);
-    XLSX.utils.book_append_sheet(wb, dropdownWs, 'Dropdowns');
-
-    // Apply data validation to the main sheet
-    const stampTypeCol = headers.indexOf('stampType');
-    const categoryType1Col = headers.indexOf('categoryType1');
-    const categoryType2Col = headers.indexOf('categoryType2');
-    const categoryType3Col = headers.indexOf('categoryType3');
-
-    if (ws['!dataValidations'] == null) ws['!dataValidations'] = {};
-
-    // Data validation for stampType (column D, 100 rows)
-    if (stampTypeCol !== -1) {
-      const stampTypeColLetter = XLSX.utils.encode_col(stampTypeCol);
-      for (let i = 2; i <= 100; i++) { // Start from row 2 (after header)
-        const cellRef = `${stampTypeColLetter}${i}`;
-        ws['!dataValidations'][cellRef] = {
-          type: 'list',
-          allowBlank: true,
-          formula1: `Dropdowns!$A$1:${XLSX.utils.encode_col(stampTypeOptions.length - 1)}$1`,
-        };
-      }
-    }
-
-    // Data validation for categoryType1, categoryType2, categoryType3 (columns K, L, M, 100 rows)
-    const categoryCols = [categoryType1Col, categoryType2Col, categoryType3Col];
-    categoryCols.forEach(colIndex => {
-      if (colIndex !== -1) {
-        const colLetter = XLSX.utils.encode_col(colIndex);
-        for (let i = 2; i <= 100; i++) { // Start from row 2 (after header)
-          const cellRef = `${colLetter}${i}`;
-          ws['!dataValidations'][cellRef] = {
-            type: 'list',
-            allowBlank: true,
-            formula1: `Dropdowns!$A$2:${XLSX.utils.encode_col(categoryOptions.length - 1)}$2`,
-          };
-        }
-      }
-    });
-
+    // Append the 'Stamps' sheet
     XLSX.utils.book_append_sheet(wb, ws, 'Stamps');
-
-    // Hide the Dropdowns sheet
-    if (!wb.Workbook) wb.Workbook = {};
-    if (!wb.Workbook.Sheets) wb.Workbook.Sheets = [];
-    wb.Workbook.Sheets.push({
-      Hidden: 1
-    });
 
     const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });

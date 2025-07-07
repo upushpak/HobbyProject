@@ -1,5 +1,5 @@
 export interface Stamp {
-  id: number;
+  id?: number;
   stampType?: string;
   name: string;
   dateOfIssue: string;

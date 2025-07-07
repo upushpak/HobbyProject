@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WantedStamp } from './wanted-stamp.model';
+import { AuditService } from './audit.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class WantedStampService {
   private wantedStamps: WantedStamp[] = [];
   private localStorageKey = 'wantedStamps';
 
-  constructor() {
+  constructor(private auditService: AuditService) {
     this.loadWantedStamps();
   }
 
@@ -33,6 +34,7 @@ export class WantedStampService {
   addWantedStamp(stamp: WantedStamp): void {
     this.wantedStamps.push(stamp);
     this.saveWantedStamps();
+    this.auditService.logAction('Add Wanted Stamp', stamp.id || 0, stamp.name).subscribe();
   }
 
   updateWantedStamp(updatedStamp: WantedStamp): void {
@@ -40,11 +42,16 @@ export class WantedStampService {
     if (index !== -1) {
       this.wantedStamps[index] = updatedStamp;
       this.saveWantedStamps();
+      this.auditService.logAction('Update Wanted Stamp', updatedStamp.id || 0, updatedStamp.name).subscribe();
     }
   }
 
   deleteWantedStamp(id: number): void {
+    const deletedStamp = this.wantedStamps.find(stamp => stamp.id === id);
     this.wantedStamps = this.wantedStamps.filter(stamp => stamp.id !== id);
     this.saveWantedStamps();
+    if (deletedStamp) {
+      this.auditService.logAction('Delete Wanted Stamp', deletedStamp.id || 0, deletedStamp.name).subscribe();
+    }
   }
 }

@@ -1,5 +1,67 @@
 {
-  "stamps": [],
+  "stamps": [
+    {
+      "id": 1751919308569,
+      "createdAt": "2025-07-07T20:15:08.209Z",
+      "fieldTimestamps": {},
+      "name": "HYD",
+      "dateOfIssue": "1995-07-07",
+      "value": 10,
+      "stampType": "Stamp",
+      "releaseYear": 1995,
+      "stampSubHeader": "test",
+      "specificStampDetails": "test",
+      "celebratingYear": 100,
+      "extraDetails": "test",
+      "categoryType1": "Fashion",
+      "categoryType2": "Defence",
+      "categoryType3": "Festival",
+      "comments": "Test",
+      "location": "Hyd",
+      "referenceLinks": [
+        "www.google.com"
+      ]
+    },
+    {
+      "id": 1751919309002,
+      "createdAt": "2025-07-07T20:15:08.209Z",
+      "fieldTimestamps": {
+        "id": "2025-07-07T20:15:08.209Z",
+        "name": "2025-07-07T20:15:08.209Z",
+        "dateOfIssue": "2025-07-07T20:15:08.209Z",
+        "value": "2025-07-07T20:15:08.209Z",
+        "stampType": "2025-07-07T20:15:08.209Z",
+        "releaseYear": "2025-07-07T20:32:15.205Z",
+        "stampSubHeader": "2025-07-07T20:15:56.210Z",
+        "specificStampDetails": "2025-07-07T20:15:08.209Z",
+        "celebratingYear": "2025-07-07T20:15:08.209Z",
+        "extraDetails": "2025-07-07T20:15:08.209Z",
+        "categoryType1": "2025-07-07T20:15:08.209Z",
+        "categoryType2": "2025-07-07T20:15:08.209Z",
+        "categoryType3": "2025-07-07T20:15:08.209Z",
+        "comments": "2025-07-07T20:15:08.209Z",
+        "location": "2025-07-07T20:16:12.190Z",
+        "referenceLinks": "2025-07-07T20:15:08.209Z"
+      },
+      "name": "CHN",
+      "dateOfIssue": "1990-05-07",
+      "value": 25,
+      "stampType": "Stamp",
+      "releaseYear": 1992,
+      "stampSubHeader": "testing",
+      "specificStampDetails": "test",
+      "celebratingYear": 100,
+      "extraDetails": "test",
+      "categoryType1": "Fashion",
+      "categoryType2": "Defence",
+      "categoryType3": "Festival",
+      "comments": "Test",
+      "location": "Hyderabad",
+      "referenceLinks": [
+        "www.google.com"
+      ]
+    }
+  ],
   "audit": [
     {
       "id": 1751899462462,
@@ -193,6 +255,526 @@
       "action": "Delete Stamp",
       "stampId": 0,
       "stampName": ""
+    },
+    {
+      "id": 1751912788187,
+      "timestamp": "2025-07-07T18:26:28.187Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751912814296,
+      "timestamp": "2025-07-07T18:26:54.296Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751912841147,
+      "timestamp": "2025-07-07T18:27:21.147Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751912976991,
+      "timestamp": "2025-07-07T18:29:36.991Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751913163078,
+      "timestamp": "2025-07-07T18:32:43.078Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751913218264,
+      "timestamp": "2025-07-07T18:33:38.264Z",
+      "action": "Update Stamp",
+      "stampId": 0,
+      "stampName": "10 Test",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 0,
+          "fieldTimestamps": {
+            "name": "2025-07-07T18:33:38.205Z"
+          },
+          "name": "10 Test"
+        }
+      }
+    },
+    {
+      "id": 1751913419717,
+      "timestamp": "2025-07-07T18:36:59.717Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751913434838,
+      "timestamp": "2025-07-07T18:37:14.838Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751913470940,
+      "timestamp": "2025-07-07T18:37:50.940Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751913648408,
+      "timestamp": "2025-07-07T18:40:48.408Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751913660891,
+      "timestamp": "2025-07-07T18:41:00.891Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751914034168,
+      "timestamp": "2025-07-07T18:47:14.168Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751914439599,
+      "timestamp": "2025-07-07T18:53:59.599Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "2 Test"
+    },
+    {
+      "id": 1751915267875,
+      "timestamp": "2025-07-07T19:07:47.875Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "2 Test"
+    },
+    {
+      "id": 1751915552595,
+      "timestamp": "2025-07-07T19:12:32.595Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "2 Test"
+    },
+    {
+      "id": 1751915855117,
+      "timestamp": "2025-07-07T19:17:35.117Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751915865601,
+      "timestamp": "2025-07-07T19:17:45.601Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "3 Test"
+    },
+    {
+      "id": 1751916018151,
+      "timestamp": "2025-07-07T19:20:18.151Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751916419400,
+      "timestamp": "2025-07-07T19:26:59.400Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751916706058,
+      "timestamp": "2025-07-07T19:31:46.058Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "2 Test"
+    },
+    {
+      "id": 1751916726211,
+      "timestamp": "2025-07-07T19:32:06.211Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751916971508,
+      "timestamp": "2025-07-07T19:36:11.508Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0,
+      "stampName": "1 Test"
+    },
+    {
+      "id": 1751917581700,
+      "timestamp": "2025-07-07T19:46:21.700Z",
+      "action": "Add Stamp",
+      "stampId": 1751917581633,
+      "stampName": "3 test"
+    },
+    {
+      "id": 1751917820981,
+      "timestamp": "2025-07-07T19:50:20.981Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751917829074,
+      "timestamp": "2025-07-07T19:50:29.074Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751917829041.0178,
+      "stampName": "1 Test"
+    },
+    {
+      "id": 1751918239989,
+      "timestamp": "2025-07-07T19:57:19.989Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918239954,
+      "stampName": "Alpha"
+    },
+    {
+      "id": 1751918511943,
+      "timestamp": "2025-07-07T20:01:51.943Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918239954,
+      "stampName": ""
+    },
+    {
+      "id": 1751918519766,
+      "timestamp": "2025-07-07T20:01:59.766Z",
+      "action": "Delete Stamp",
+      "stampId": 1751917581633,
+      "stampName": ""
+    },
+    {
+      "id": 1751918555163,
+      "timestamp": "2025-07-07T20:02:35.163Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918555119,
+      "stampName": "HYD"
+    },
+    {
+      "id": 1751918583469,
+      "timestamp": "2025-07-07T20:03:03.469Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918555119,
+      "stampName": ""
+    },
+    {
+      "id": 1751918808470,
+      "timestamp": "2025-07-07T20:06:48.470Z",
+      "action": "Delete Stamp",
+      "stampId": 1751917829041.7903,
+      "stampName": ""
+    },
+    {
+      "id": 1751918813680,
+      "timestamp": "2025-07-07T20:06:53.680Z",
+      "action": "Delete Stamp",
+      "stampId": 1751917829041.0178,
+      "stampName": ""
+    },
+    {
+      "id": 1751918826858,
+      "timestamp": "2025-07-07T20:07:06.858Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918827688,
+      "stampName": "BLR"
+    },
+    {
+      "id": 1751918845235,
+      "timestamp": "2025-07-07T20:07:25.235Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918827688,
+      "stampName": ""
+    },
+    {
+      "id": 1751918848720,
+      "timestamp": "2025-07-07T20:07:28.720Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918827519,
+      "stampName": ""
+    },
+    {
+      "id": 1751918856715,
+      "timestamp": "2025-07-07T20:07:36.715Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918856916,
+      "stampName": "BLR"
+    },
+    {
+      "id": 1751918894271,
+      "timestamp": "2025-07-07T20:08:14.271Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918894893,
+      "stampName": "CHN"
+    },
+    {
+      "id": 1751918918324,
+      "timestamp": "2025-07-07T20:08:38.324Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918894893,
+      "stampName": ""
+    },
+    {
+      "id": 1751918922836,
+      "timestamp": "2025-07-07T20:08:42.836Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918857363,
+      "stampName": ""
+    },
+    {
+      "id": 1751918926150,
+      "timestamp": "2025-07-07T20:08:46.150Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918856916,
+      "stampName": ""
+    },
+    {
+      "id": 1751918946916,
+      "timestamp": "2025-07-07T20:09:06.916Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751918947088,
+      "stampName": "CHN"
+    },
+    {
+      "id": 1751919285511,
+      "timestamp": "2025-07-07T20:14:45.511Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918947088,
+      "stampName": ""
+    },
+    {
+      "id": 1751919288412,
+      "timestamp": "2025-07-07T20:14:48.412Z",
+      "action": "Delete Stamp",
+      "stampId": 1751918947168,
+      "stampName": ""
+    },
+    {
+      "id": 1751919308249,
+      "timestamp": "2025-07-07T20:15:08.249Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 1751919309002,
+      "stampName": "CHN"
+    },
+    {
+      "id": 1751919333426,
+      "timestamp": "2025-07-07T20:15:33.426Z",
+      "action": "Update Stamp",
+      "stampId": 1751919309002,
+      "stampName": "CHN",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751919309002,
+          "createdAt": "2025-07-07T20:15:08.209Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T20:15:08.209Z",
+            "name": "2025-07-07T20:15:08.209Z",
+            "dateOfIssue": "2025-07-07T20:15:08.209Z",
+            "value": "2025-07-07T20:15:08.209Z",
+            "stampType": "2025-07-07T20:15:08.209Z",
+            "releaseYear": "2025-07-07T20:15:33.376Z",
+            "stampSubHeader": "2025-07-07T20:15:08.209Z",
+            "specificStampDetails": "2025-07-07T20:15:08.209Z",
+            "celebratingYear": "2025-07-07T20:15:08.209Z",
+            "extraDetails": "2025-07-07T20:15:08.209Z",
+            "categoryType1": "2025-07-07T20:15:08.209Z",
+            "categoryType2": "2025-07-07T20:15:08.209Z",
+            "categoryType3": "2025-07-07T20:15:08.209Z",
+            "comments": "2025-07-07T20:15:08.209Z",
+            "location": "2025-07-07T20:15:08.209Z",
+            "referenceLinks": "2025-07-07T20:15:08.209Z"
+          },
+          "name": "CHN",
+          "dateOfIssue": "1990-05-07",
+          "value": 25,
+          "stampType": "Stamp",
+          "releaseYear": 1991,
+          "stampSubHeader": "test",
+          "specificStampDetails": "test",
+          "celebratingYear": 100,
+          "extraDetails": "test",
+          "categoryType1": "Fashion",
+          "categoryType2": "Defence",
+          "categoryType3": "Festival",
+          "comments": "Test",
+          "location": "Hyd",
+          "referenceLinks": [
+            "www.google.com"
+          ]
+        }
+      }
+    },
+    {
+      "id": 1751919356262,
+      "timestamp": "2025-07-07T20:15:56.262Z",
+      "action": "Update Stamp",
+      "stampId": 1751919309002,
+      "stampName": "CHN",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751919309002,
+          "createdAt": "2025-07-07T20:15:08.209Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T20:15:08.209Z",
+            "name": "2025-07-07T20:15:08.209Z",
+            "dateOfIssue": "2025-07-07T20:15:08.209Z",
+            "value": "2025-07-07T20:15:08.209Z",
+            "stampType": "2025-07-07T20:15:08.209Z",
+            "releaseYear": "2025-07-07T20:15:33.376Z",
+            "stampSubHeader": "2025-07-07T20:15:56.210Z",
+            "specificStampDetails": "2025-07-07T20:15:08.209Z",
+            "celebratingYear": "2025-07-07T20:15:08.209Z",
+            "extraDetails": "2025-07-07T20:15:08.209Z",
+            "categoryType1": "2025-07-07T20:15:08.209Z",
+            "categoryType2": "2025-07-07T20:15:08.209Z",
+            "categoryType3": "2025-07-07T20:15:08.209Z",
+            "comments": "2025-07-07T20:15:08.209Z",
+            "location": "2025-07-07T20:15:08.209Z",
+            "referenceLinks": "2025-07-07T20:15:08.209Z"
+          },
+          "name": "CHN",
+          "dateOfIssue": "1990-05-07",
+          "value": 25,
+          "stampType": "Stamp",
+          "releaseYear": 1991,
+          "stampSubHeader": "testing",
+          "specificStampDetails": "test",
+          "celebratingYear": 100,
+          "extraDetails": "test",
+          "categoryType1": "Fashion",
+          "categoryType2": "Defence",
+          "categoryType3": "Festival",
+          "comments": "Test",
+          "location": "Hyd",
+          "referenceLinks": [
+            "www.google.com"
+          ]
+        }
+      }
+    },
+    {
+      "id": 1751919372235,
+      "timestamp": "2025-07-07T20:16:12.236Z",
+      "action": "Update Stamp",
+      "stampId": 1751919309002,
+      "stampName": "CHN",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751919309002,
+          "createdAt": "2025-07-07T20:15:08.209Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T20:15:08.209Z",
+            "name": "2025-07-07T20:15:08.209Z",
+            "dateOfIssue": "2025-07-07T20:15:08.209Z",
+            "value": "2025-07-07T20:15:08.209Z",
+            "stampType": "2025-07-07T20:15:08.209Z",
+            "releaseYear": "2025-07-07T20:15:33.376Z",
+            "stampSubHeader": "2025-07-07T20:15:56.210Z",
+            "specificStampDetails": "2025-07-07T20:15:08.209Z",
+            "celebratingYear": "2025-07-07T20:15:08.209Z",
+            "extraDetails": "2025-07-07T20:15:08.209Z",
+            "categoryType1": "2025-07-07T20:15:08.209Z",
+            "categoryType2": "2025-07-07T20:15:08.209Z",
+            "categoryType3": "2025-07-07T20:15:08.209Z",
+            "comments": "2025-07-07T20:15:08.209Z",
+            "location": "2025-07-07T20:16:12.190Z",
+            "referenceLinks": "2025-07-07T20:15:08.209Z"
+          },
+          "name": "CHN",
+          "dateOfIssue": "1990-05-07",
+          "value": 25,
+          "stampType": "Stamp",
+          "releaseYear": 1991,
+          "stampSubHeader": "testing",
+          "specificStampDetails": "test",
+          "celebratingYear": 100,
+          "extraDetails": "test",
+          "categoryType1": "Fashion",
+          "categoryType2": "Defence",
+          "categoryType3": "Festival",
+          "comments": "Test",
+          "location": "Hyderabad",
+          "referenceLinks": [
+            "www.google.com"
+          ]
+        }
+      }
+    },
+    {
+      "id": 1751920335258,
+      "timestamp": "2025-07-07T20:32:15.258Z",
+      "action": "Update Stamp",
+      "stampId": 1751919309002,
+      "stampName": "CHN",
+      "details": {
+        "from": null,
+        "to": {
+          "id": 1751919309002,
+          "createdAt": "2025-07-07T20:15:08.209Z",
+          "fieldTimestamps": {
+            "id": "2025-07-07T20:15:08.209Z",
+            "name": "2025-07-07T20:15:08.209Z",
+            "dateOfIssue": "2025-07-07T20:15:08.209Z",
+            "value": "2025-07-07T20:15:08.209Z",
+            "stampType": "2025-07-07T20:15:08.209Z",
+            "releaseYear": "2025-07-07T20:32:15.205Z",
+            "stampSubHeader": "2025-07-07T20:15:56.210Z",
+            "specificStampDetails": "2025-07-07T20:15:08.209Z",
+            "celebratingYear": "2025-07-07T20:15:08.209Z",
+            "extraDetails": "2025-07-07T20:15:08.209Z",
+            "categoryType1": "2025-07-07T20:15:08.209Z",
+            "categoryType2": "2025-07-07T20:15:08.209Z",
+            "categoryType3": "2025-07-07T20:15:08.209Z",
+            "comments": "2025-07-07T20:15:08.209Z",
+            "location": "2025-07-07T20:16:12.190Z",
+            "referenceLinks": "2025-07-07T20:15:08.209Z"
+          },
+          "name": "CHN",
+          "dateOfIssue": "1990-05-07",
+          "value": 25,
+          "stampType": "Stamp",
+          "releaseYear": 1992,
+          "stampSubHeader": "testing",
+          "specificStampDetails": "test",
+          "celebratingYear": 100,
+          "extraDetails": "test",
+          "categoryType1": "Fashion",
+          "categoryType2": "Defence",
+          "categoryType3": "Festival",
+          "comments": "Test",
+          "location": "Hyderabad",
+          "referenceLinks": [
+            "www.google.com"
+          ]
+        }
+      }
+    },
+    {
+      "id": 1751920359813,
+      "timestamp": "2025-07-07T20:32:39.813Z",
+      "action": "Update Reference Link",
+      "stampId": 1751215538125,
+      "stampName": "https://google.com"
+    },
+    {
+      "id": 1751920382071,
+      "timestamp": "2025-07-07T20:33:02.071Z",
+      "action": "Delete Wanted Stamp",
+      "stampId": 1751901292201,
+      "stampName": "Lost"
     }
   ]
 }

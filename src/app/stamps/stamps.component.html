@@ -80,7 +80,7 @@
         <tbody>
           <tr *ngFor="let stamp of stamps">
             <td>
-              <a [routerLink]="['/stamps', stamp.id]"><i class="bi bi-eye-fill" style="color: #17a2b8;"></i></a><br>
+              <a [routerLink]="['/stamps', stamp.id]" (click)="stamp.id !== undefined && logStampId(stamp.id)"><i class="bi bi-eye-fill" style="color: #17a2b8;"></i></a><br>
               <button (click)="confirmDelete(stamp)" style="background: none; border: none; padding: 0; cursor: pointer;"><i class="bi bi-trash-fill" style="color: #dc3545;"></i></button>
             </td>
             <td>{{ stamp.stampType }}</td>

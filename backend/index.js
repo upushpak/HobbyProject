@@ -37,7 +37,8 @@ app.get('/api/stamps', async (req, res) => {
 // GET a single stamp by ID
 app.get('/api/stamps/:id', async (req, res) => {
   await db.read();
-  const id = parseInt(req.params.id);
+  const id = parseFloat(req.params.id);
+  console.log('Backend: Received GET request for stamp with ID:', id);
   const stamp = db.data.stamps.find(s => s.id === id);
   if (stamp) {
     res.json(stamp);
@@ -50,24 +51,57 @@ app.get('/api/stamps/:id', async (req, res) => {
 app.post('/api/stamps', async (req, res) => {
   await db.read();
   const newStamp = { id: Date.now(), ...req.body }; // Simple ID generation
+
+  // Check for duplicates
+  const existingStamp = db.data.stamps.find(
+    s => s.name === newStamp.name && s.dateOfIssue === newStamp.dateOfIssue
+  );
+
+  if (existingStamp) {
+    return res.status(409).send('Stamp with the same name and release date already exists.');
+  }
+
   db.data.stamps.push(newStamp);
   await db.write();
+  console.log('Added new stamp:', newStamp.id, newStamp.name); // Log new stamp ID
   res.status(201).json(newStamp);
 });
 
 // POST multiple new stamps (bulk upload)
 app.post('/api/stamps/bulk', async (req, res) => {
   await db.read();
-  const newStamps = req.body.map(stamp => ({ id: Date.now() + Math.random(), ...stamp })); // Simple ID generation for each
-  db.data.stamps.push(...newStamps);
+  const newStamps = req.body.map(stamp => ({
+    id: Math.floor(Date.now() + Math.random() * 1000),
+    createdAt: new Date().toISOString(), // Set creation timestamp
+    fieldTimestamps: {}, // Initialize field timestamps
+    ...stamp
+  }));
+
+  const duplicates = [];
+  const stampsToAdd = [];
+
+  for (const newStamp of newStamps) {
+    const existingStamp = db.data.stamps.find(
+      s => s.name === newStamp.name && s.dateOfIssue === newStamp.dateOfIssue
+    );
+    if (existingStamp) {
+      duplicates.push(`Stamp with name '${newStamp.name}' and release date '${newStamp.dateOfIssue}' already exists.`);
+    } else {
+      stampsToAdd.push(newStamp);
+    }
+  }
+
+  db.data.stamps.push(...stampsToAdd);
   await db.write();
-  res.status(201).json(newStamps);
+  console.log('Added bulk stamps. IDs:', stampsToAdd.map(s => s.id)); // Log new stamp IDs
+  res.status(200).json({ addedStamps: stampsToAdd, duplicates });
 });
 
 // PUT (update) an existing stamp
 app.put('/api/stamps/:id', async (req, res) => {
   await db.read();
-  const id = parseInt(req.params.id);
+  const id = parseFloat(req.params.id);
+  console.log('Received PUT request for ID:', id);
   const index = db.data.stamps.findIndex(s => s.id === id);
   if (index !== -1) {
     db.data.stamps[index] = { id, ...req.body };
@@ -81,13 +115,16 @@ app.put('/api/stamps/:id', async (req, res) => {
 // DELETE a stamp
 app.delete('/api/stamps/:id', async (req, res) => {
   await db.read();
-  const id = parseInt(req.params.id);
+  const id = parseFloat(req.params.id);
+  console.log('Received DELETE request for ID:', id); // Log received ID
   const initialLength = db.data.stamps.length;
   db.data.stamps = db.data.stamps.filter(s => s.id !== id);
   if (db.data.stamps.length < initialLength) {
     await db.write();
+    console.log('Deleted stamp with ID:', id); // Log successful deletion
     res.status(204).send(); // No content
   } else {
+    console.log('Stamp with ID:', id, 'not found for deletion.'); // Log if not found
     res.status(404).send('Stamp not found');
   }
 });
@@ -106,6 +143,10 @@ app.post('/api/audit', async (req, res) => {
   await db.write();
   res.status(201).json(newLog);
 });
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // GET Git version history
 app.get('/api/version-history', (req, res) => {

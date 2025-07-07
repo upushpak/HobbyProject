@@ -1,6 +1,6 @@
 {
   "name": "stamp-collection",
-  "version": "2.2",
+  "version": "2.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

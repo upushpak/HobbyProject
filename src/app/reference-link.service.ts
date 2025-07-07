@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReferenceLink } from './reference-link.model';
+import { AuditService } from './audit.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ReferenceLinkService {
   private referenceLinks: ReferenceLink[] = [];
   private localStorageKey = 'referenceLinks';
 
-  constructor() {
+  constructor(private auditService: AuditService) {
     this.loadReferenceLinks();
   }
 
@@ -33,6 +34,7 @@ export class ReferenceLinkService {
   addReferenceLink(link: ReferenceLink): void {
     this.referenceLinks.push(link);
     this.saveReferenceLinks();
+    this.auditService.logAction('Add Reference Link', link.id || 0, link.url).subscribe();
   }
 
   updateReferenceLink(updatedLink: ReferenceLink): void {
@@ -40,11 +42,16 @@ export class ReferenceLinkService {
     if (index !== -1) {
       this.referenceLinks[index] = updatedLink;
       this.saveReferenceLinks();
+      this.auditService.logAction('Update Reference Link', updatedLink.id || 0, updatedLink.url).subscribe();
     }
   }
 
   deleteReferenceLink(id: number): void {
+    const deletedLink = this.referenceLinks.find(link => link.id === id);
     this.referenceLinks = this.referenceLinks.filter(link => link.id !== id);
     this.saveReferenceLinks();
+    if (deletedLink) {
+      this.auditService.logAction('Delete Reference Link', deletedLink.id || 0, deletedLink.url).subscribe();
+    }
   }
 }
