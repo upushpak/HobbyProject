@@ -1,0 +1,12 @@
+.excel-upload-container {
+  padding: 20px;
+  text-align: center;
+}
+
+input[type="file"] {
+  margin: 20px 0;
+}
+
+mat-progress-bar {
+  margin-top: 20px;
+}

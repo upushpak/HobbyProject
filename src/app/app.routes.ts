@@ -7,9 +7,11 @@ import { DashboardComponent } from './dashboard/dashboard';
 import { AuditComponent } from './audit.component';
 import { ReferenceLinksComponent } from './reference-links/reference-links.component';
 import { WantedStampsComponent } from './wanted-stamps/wanted-stamps.component';
+import { ExcelUploadComponent } from './excel-upload/excel-upload.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'upload-excel', component: ExcelUploadComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'stamps', component: StampsComponent },
   { path: 'stamps/new', component: AddStampComponent },

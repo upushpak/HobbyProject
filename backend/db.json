@@ -1,76 +1,5 @@
 {
-  "stamps": [
-    {
-      "id": 1751899462369,
-      "stampType": "Stamp",
-      "releaseYear": 2025,
-      "dateOfIssue": "2025-07-01",
-      "name": "Test",
-      "stampSubHeader": "Testing",
-      "specificStampDetails": "Test",
-      "celebratingYear": "100",
-      "value": 5,
-      "extraDetails": "Test",
-      "categoryType1": "Movement",
-      "categoryType2": "School/College/University",
-      "categoryType3": "Personality",
-      "comments": "Test",
-      "location": "India",
-      "referenceLinks": [
-        "www.google.com"
-      ],
-      "files": [],
-      "numberOfStamps": null,
-      "stampValues": [],
-      "createdAt": "2025-07-07T14:44:22.369Z",
-      "fieldTimestamps": {
-        "id": "2025-07-07T14:44:22.369Z",
-        "stampType": "2025-07-07T14:44:22.369Z",
-        "releaseYear": "2025-07-07T15:14:04.133Z",
-        "dateOfIssue": "2025-07-07T14:44:22.369Z",
-        "name": "2025-07-07T14:44:22.369Z",
-        "stampSubHeader": "2025-07-07T15:14:10.974Z",
-        "specificStampDetails": "2025-07-07T14:44:22.369Z",
-        "celebratingYear": "2025-07-07T14:44:22.369Z",
-        "value": "2025-07-07T14:44:22.369Z",
-        "extraDetails": "2025-07-07T14:44:22.369Z",
-        "categoryType1": "2025-07-07T14:44:22.369Z",
-        "categoryType2": "2025-07-07T14:44:22.369Z",
-        "categoryType3": "2025-07-07T14:44:22.369Z",
-        "comments": "2025-07-07T14:44:22.369Z",
-        "location": "2025-07-07T14:44:22.369Z",
-        "referenceLinks": "2025-07-07T14:44:22.369Z",
-        "files": "2025-07-07T14:44:22.369Z",
-        "numberOfStamps": "2025-07-07T14:44:22.369Z",
-        "stampValues": "2025-07-07T14:44:22.369Z"
-      }
-    },
-    {
-      "id": 1751899581267,
-      "stampType": "Miniature Sheet",
-      "releaseYear": 2022,
-      "dateOfIssue": "2025-06-30",
-      "name": "Sheet",
-      "stampSubHeader": "Sheet",
-      "specificStampDetails": "Sheet",
-      "celebratingYear": "100",
-      "extraDetails": "Sheeet",
-      "categoryType1": "Personality",
-      "comments": "Sheet",
-      "location": "Hyderabad",
-      "referenceLinks": [
-        "www.fedex.com"
-      ],
-      "files": [],
-      "numberOfStamps": 3,
-      "stampValues": [
-        10,
-        5,
-        10
-      ],
-      "createdAt": "2025-07-07T14:46:21.267Z"
-    }
-  ],
+  "stamps": [],
   "audit": [
     {
       "id": 1751899462462,
@@ -211,6 +140,59 @@
           }
         }
       }
+    },
+    {
+      "id": 1751909575426,
+      "timestamp": "2025-07-07T17:32:55.426Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751909612424,
+      "timestamp": "2025-07-07T17:33:32.424Z",
+      "action": "Delete Stamp",
+      "stampId": 1751899462369,
+      "stampName": ""
+    },
+    {
+      "id": 1751909616911,
+      "timestamp": "2025-07-07T17:33:36.911Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751909625926,
+      "timestamp": "2025-07-07T17:33:45.926Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751909788140,
+      "timestamp": "2025-07-07T17:36:28.140Z",
+      "action": "Delete Stamp",
+      "stampId": 1751899581267,
+      "stampName": ""
+    },
+    {
+      "id": 1751909791050,
+      "timestamp": "2025-07-07T17:36:31.050Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
+    },
+    {
+      "id": 1751909802263,
+      "timestamp": "2025-07-07T17:36:42.263Z",
+      "action": "Add Stamp (Bulk)",
+      "stampId": 0
+    },
+    {
+      "id": 1751909908919,
+      "timestamp": "2025-07-07T17:38:28.919Z",
+      "action": "Delete Stamp",
+      "stampId": 0,
+      "stampName": ""
     }
   ]
 }

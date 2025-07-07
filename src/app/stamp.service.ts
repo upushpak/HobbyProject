@@ -39,6 +39,18 @@ export class StampService {
     );
   }
 
+  addStamps(stamps: Stamp[]): Observable<Stamp[]> {
+    // Assuming your backend API can handle a POST request with an array of stamps
+    // If not, you might need to iterate and call addStamp for each, or adjust backend.
+    return this.http.post<Stamp[]>(`${this.apiUrl}/bulk`, stamps).pipe(
+      tap(newStamps => {
+        newStamps.forEach(newStamp => {
+          this.auditService.logAction('Add Stamp (Bulk)', newStamp.id, newStamp.name).subscribe();
+        });
+      })
+    );
+  }
+
   deleteStamp(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
       tap(() => this.auditService.logAction('Delete Stamp', id, '').subscribe()) // Name might not be available after delete

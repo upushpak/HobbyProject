@@ -15,6 +15,9 @@
         <a class="nav-link" routerLink="/stamps/new">Add Stamp</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="/upload-excel">Upload Excel</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="/audit">Audit Log</a>
       </li>
       <li class="nav-item">
@@ -24,7 +27,7 @@
         <a class="nav-link" routerLink="/wanted-stamps">Wanted Stamps</a>
       </li>
     </ul>
-    <span class="navbar-text version-info">
+    <span class="navbar-text version-info" (click)="openVersionHistory()">
       Version {{ version }}<br>
       {{ lastUpdated }}
     </span>

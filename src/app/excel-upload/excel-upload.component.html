@@ -1,0 +1,11 @@
+<div class="excel-upload-container">
+  <h2>Upload Stamp Data from Excel</h2>
+
+  <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls">
+
+  <button mat-raised-button color="primary" (click)="downloadSampleExcel()">Download Sample Excel</button>
+
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+  <p *ngIf="!isLoading">Select an Excel file (.xlsx or .xls) to upload stamp data.</p>
+</div>

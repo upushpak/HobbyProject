@@ -2,6 +2,8 @@ import express from 'express';
 import { Low } from 'lowdb';
 import { JSONFile } from 'lowdb/node';
 import cors from 'cors';
+import path from 'path';
+import { exec } from 'child_process';
 
 // Use JSON file for storage
 const file = 'db.json';
@@ -53,6 +55,15 @@ app.post('/api/stamps', async (req, res) => {
   res.status(201).json(newStamp);
 });
 
+// POST multiple new stamps (bulk upload)
+app.post('/api/stamps/bulk', async (req, res) => {
+  await db.read();
+  const newStamps = req.body.map(stamp => ({ id: Date.now() + Math.random(), ...stamp })); // Simple ID generation for each
+  db.data.stamps.push(...newStamps);
+  await db.write();
+  res.status(201).json(newStamps);
+});
+
 // PUT (update) an existing stamp
 app.put('/api/stamps/:id', async (req, res) => {
   await db.read();
@@ -96,6 +107,10 @@ app.post('/api/audit', async (req, res) => {
   res.status(201).json(newLog);
 });
 
-app.listen(port, () => {
-  console.log(`Backend server listening at http://localhost:${port}`);
+// GET Git version history
+app.get('/api/version-history', (req, res) => {
+  const repoRoot = path.join(__dirname, '..'); // Go up one level from backend directory
+  exec('git log --pretty=format:"%H%n%an%n%ad%n%s%n" --date=iso', { cwd: repoRoot }, (error, stdout, stderr) => {    if (error) {      console.error(`exec error: ${error}`);      return res.status(500).send('Error retrieving version history');    }    const commits = stdout.split('\n\n').filter(Boolean).map(commit => {      const [hash, author, date, ...messageLines] = commit.split('\n');      return {        hash,        author,        date,        message: messageLines.join('\n').trim()      };    });    res.json(commits);  });
 });
+
+app.listen(port, () => {  console.log(`Backend server listening at http://localhost:${port}`);});
